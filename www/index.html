@@ -5,9 +5,13 @@
  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" > 
     <script src="cordova.js"></script>    
     <script>
+	alert('1');
 	document.addEventListener('deviceready', onDeviceReady, false);
+	alert('2');
 	function onDeviceReady() {
+		alert('ready');
 		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+		alert('nav ok');
 	};
 	
 	var onSuccess = function(position) {
