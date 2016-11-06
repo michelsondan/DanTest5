@@ -3,7 +3,7 @@
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "il.co.meidanprog.danGeoTest"
     versionCode = "10"
-    version     = "1.0.2" >
+    version     = "1.0.3" >
 
 <!-- versionCode is optional and Android only -->
 
@@ -18,11 +18,8 @@
   </author>
   
 <plugin name="cordova-plugin-geolocation" source="npm" />
-<gap:platform name="android" />
 
 
-<feature name="Geolocation">
-    <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
-</feature>
+
 
 </widget>
