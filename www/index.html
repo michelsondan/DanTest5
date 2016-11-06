@@ -26,8 +26,8 @@
 		var curla = position.coords.latitude;
 		var curlo = position.coords.longitude;
 		
-		alert(calcTheDistance(curla, curlo));
-
+		//alert(calcTheDistance(curla, curlo));
+		alert(calculateDistance(lastLa,lastLo,curla,curlo));
 		lastLa = curla;
 		lastLo = curlo;
 	};
@@ -56,6 +56,18 @@
 	    var d = r * c;
 	    return Math.round(d);
 	};
+
+function calculateDistance(lat1, lon1, lat2, lon2) {
+	  var R = 6371000; // km
+	  var dLat = toRadians(lat2 - lat1);
+	  var dLon = toRadians(lon2 - lon1);
+	  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        	  Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * 
+	          Math.sin(dLon / 2) * Math.sin(dLon / 2); 
+	  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
+	  var d = R * c;
+	  return d;
+	}
 
 	function calcdistance() {
 		navigator.geolocation.getCurrentPosition(onNewPoint, onError);
