@@ -20,9 +20,12 @@
 			    var lla = position.coords.latitude;
 			    var llo = position.coords.longitude;
 			    alert(lla);
+	};
 
-
-};    </script>
+	var onError = function(error) {
+		alert( 'code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+	};
+</script>
 </head>
 <body id="body" onload="init();" dir="rtl">
    <center>
