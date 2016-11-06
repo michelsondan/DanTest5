@@ -10,6 +10,7 @@
 	alert('2');
 	function onDeviceReady() {
 		alert('ready');
+		alert(navigator);
 		navigator.geolocation.getCurrentPosition(onSuccess, onError);
 		alert('nav ok');
 	};
