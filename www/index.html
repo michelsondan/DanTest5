@@ -4,6 +4,20 @@
 <head>
  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" > 
     <script src="cordova.js"></script>    
+    <script>
+	document.addEventListener('deviceready', onDeviceReady, false);
+	function onDeviceReady() {
+		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	};
+	
+	var onSuccess = function(position) {
+			    alert('Success, attempting calculation...');
+			    var lla = position.coords.latitude;
+			    var llo = position.coords.longitude;
+			    alert(lla);
+
+
+};    </script>
 </head>
 <body id="body" onload="init();" dir="rtl">
    <center>
