@@ -89,8 +89,9 @@ function bearing(lat1,lng1,lat2,lng2) {
             return ((brng + 360) % 360);
         }
 
-	function calcdistance() {
-		navigator.geolocation.getCurrentPosition(onNewPoint, onError);
+function calcdistance() {
+    var options = { enableHighAccuracy: true, timeout: 30000 };
+    navigator.geolocation.getCurrentPosition(onNewPoint, onError, options);
 		
 	}
 
