@@ -30,9 +30,9 @@
 		//alert(calcTheDistance(curla, curlo));
 		//alert(calculateDistance(lastLa,lastLo,curla,curlo));
 	    //alert(bearing(lastLa,lastLo,curla,curlo));
-		alert('start');
-		alert('co=' + curlo);
-		alert('la=' + curla);
+		//alert('start');
+		//alert('co=' + curlo);
+		//alert('la=' + curla);
 		alert(getX(curlo));
 		alert(getY(curla));
 		drawPoint(getX(curlo), getY(curla));
@@ -97,10 +97,10 @@ function calcdistance() {
 	}
 
 	var bounds = {
-	    "minLon": 34.770560,
-	    "maxLon": 34.772834,
-	    "maxLat": 31.889430,
-	    "minLat": 31.888091
+	    "minLon": 34.760311,
+	    "maxLon": 34.785279,
+	    "maxLat": 31.904864,
+	    "minLat": 31.875411
 	}
 	var dimensions = {
 	    width: 200,
@@ -115,12 +115,21 @@ function calcdistance() {
 	    return dimensions.height * position;
 	}
 
+	var lastx;
+	var lasty;
+	lastx = 0;
+	lasty = 0;
 	function drawPoint(x, y) {
-	    var c = document.getElementById("map");
-	    var ctx = c.getContext("2d");
-	    ctx.moveTo(0, 0);
-	    ctx.lineTo(x + 1, y + 1);
-	    ctx.stroke();
+	    if (lastx != 0 && lasty != 0) {
+	        var c = document.getElementById("map");
+	        var ctx = c.getContext("2d");
+	        ctx.moveTo(lastx, lasty);
+	        ctx.lineTo(x, y);
+	        ctx.stroke();
+	    }
+
+	    lastx = x;
+	    lasty = y;
 	}
 </script>
 </head>
