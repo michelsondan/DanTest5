@@ -11,7 +11,7 @@
 	function onDeviceReady() {
 	    var options = { enableHighAccuracy: true, timeout: 30000 };
 	    //navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
-	    navigator.geolocation.watchPosition(onSuccess, onError, options);
+	    navigator.geolocation.watchPosition(onNewPoint, onError, options);
 	};
 	
 	var onSuccess = function(position) {
@@ -44,7 +44,7 @@
 		lastLa = curla;
 		lastLo = curlo;
 
-		setTimeout(calcdistance, 500);
+		//setTimeout(calcdistance, 500);
 	};
 
 	function toRadians(num) {
@@ -137,7 +137,7 @@ function calcdistance() {
 	    document.getElementById("txtX").value = x;
 	    document.getElementById("txtY").value = y;
 
-	    if (x <= dimensions.width && x >= 0 && y <= dimensions.he && y >= 0) {
+	    if (x <= dimensions.width && x >= 0 && y <= dimensions.height && y >= 0) {
 	        if (lastx != 0 && lasty != 0) {
 	            var c = document.getElementById("map");
 	            var ctx = c.getContext("2d");
@@ -165,7 +165,7 @@ function calcdistance() {
     <br />
     Y&nbsp;<input type="text" id="txtY" name="txtY" />
     <br />
-    V1.3.0
+    V1.3.1
     </center>
 </body>
 </html>
