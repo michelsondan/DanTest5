@@ -40,6 +40,9 @@
 		document.getElementById("txtLat").value = curla;
 		lastLa = curla;
 		lastLo = curlo;
+
+		setTimeout(calcdistance, 1000);
+
 	};
 
 	function toRadians(num) {
@@ -94,7 +97,6 @@ function bearing(lat1,lng1,lat2,lng2) {
 function calcdistance() {
     var options = { enableHighAccuracy: true, timeout: 30000 };
     navigator.geolocation.getCurrentPosition(onNewPoint, onError, options);
-    setTimeout(calcdistance, 3000);
 	}
 
 	//var bounds = {
@@ -141,14 +143,16 @@ function calcdistance() {
 	    lasty = y;
 	}
 
-	setTimeout(calcdistance, 3000);
+	setTimeout(calcdistance, 1000);
 </script>
 </head>
 <body id="body" onload="init();" dir="rtl">
    <center>
      <canvas id="map" width="300" height="450" style="border:1px solid #000000;">
     </canvas>
-    Lon&nbsp;<input type="text" id="txtLon" name="txtLon" />Lat&nbsp;<input type="text" id="txtLat" name="txtLat" />
+    Lat&nbsp;<input type="text" id="txtLat" name="txtLat" />
+    <br />
+    Lon&nbsp;<input type="text" id="txtLon" name="txtLon" />
     </center>
 </body>
 </html>
