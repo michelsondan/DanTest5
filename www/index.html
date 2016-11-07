@@ -117,7 +117,7 @@ function calcdistance() {
 	function drawPoint(x, y) {
 	    var c = document.getElementById("map");
 	    var ctx = c.getContext("2d");
-	    ctx.moveTo(x, y);
+	    ctx.moveTo(0, 0);
 	    ctx.lineTo(x + 1, y + 1);
 	    ctx.stroke();
 	}
