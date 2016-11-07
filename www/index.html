@@ -10,13 +10,16 @@
 	document.addEventListener('deviceready', onDeviceReady, false);
 	function onDeviceReady() {
 	    var options = { enableHighAccuracy: true, timeout: 30000 };
-	    navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+	    //navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+	    navigator.geolocation.watchPosition(onSuccess, onError, options);
 	};
 	
 	var onSuccess = function(position) {
 		lastLa = position.coords.latitude;
 		lastLo = position.coords.longitude;
 		alert(lastLa);
+
+		setTimeout(calcdistance, 500);
 	};
 
 	var onError = function(error) {
@@ -42,7 +45,6 @@
 		lastLo = curlo;
 
 		setTimeout(calcdistance, 500);
-
 	};
 
 	function toRadians(num) {
@@ -95,8 +97,9 @@ function bearing(lat1,lng1,lat2,lng2) {
         }
 
 function calcdistance() {
-    var options = { enableHighAccuracy: true, timeout: 30000 };
-    navigator.geolocation.getCurrentPosition(onNewPoint, onError, options);
+    var options = { enableHighAccuracy: true, timeout: 3000 };
+    //navigator.geolocation.getCurrentPosition(onNewPoint, onError, options);
+    navigator.geolocation.watchPosition(onNewPoint, onError, options);
 	}
 
 	//var bounds = {
@@ -147,8 +150,6 @@ function calcdistance() {
 	        lasty = y;
 	    }
 	}
-
-	setTimeout(calcdistance, 1000);
 </script>
 </head>
 <body id="body" onload="init();" dir="rtl">
@@ -164,7 +165,7 @@ function calcdistance() {
     <br />
     Y&nbsp;<input type="text" id="txtY" name="txtY" />
     <br />
-    V1.2.9
+    V1.3.0
     </center>
 </body>
 </html>
