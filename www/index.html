@@ -91,10 +91,9 @@ function bearing(lat1,lng1,lat2,lng2) {
         }
 
 function calcdistance() {
-    alert('timer');
     var options = { enableHighAccuracy: true, timeout: 30000 };
     navigator.geolocation.getCurrentPosition(onNewPoint, onError, options);
-		
+    setTimeout(calcdistance, 3000);
 	}
 
 	var bounds = {
