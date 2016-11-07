@@ -9,7 +9,8 @@
 	var lastLo;
 	document.addEventListener('deviceready', onDeviceReady, false);
 	function onDeviceReady() {
-		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	    var options = { enableHighAccuracy: true, timeout: 30000 };
+	    navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	};
 	
 	var onSuccess = function(position) {
