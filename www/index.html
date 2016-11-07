@@ -36,7 +36,8 @@
 		//alert(getX(curlo));
 		//alert(getY(curla));
 		drawPoint(getX(curlo), getY(curla));
-
+		document.getElementById("txtLon").value = curlo;
+		document.getElementById("txtLat").value = curla;
 		lastLa = curla;
 		lastLo = curlo;
 	};
@@ -96,12 +97,20 @@ function calcdistance() {
     setTimeout(calcdistance, 3000);
 	}
 
-	var bounds = {
-	    "minLon": 34.760311,
-	    "maxLon": 34.785279,
-	    "maxLat": 31.904864,
-	    "minLat": 31.875411
-	}
+	//var bounds = {
+	//    "minLon": 34.760311,
+	//    "maxLon": 34.785279,
+	//    "maxLat": 31.904864,
+	//    "minLat": 31.875411
+	//}
+
+    var bounds = {
+        "minLon": 34.771252,
+        "maxLon": 34.772003,
+        "maxLat": 31.888989,
+        "minLat": 31.888580
+    }
+
 	var dimensions = {
 	    width: 300,
 	    height: 450
@@ -139,6 +148,7 @@ function calcdistance() {
    <center>
      <canvas id="map" width="300" height="450" style="border:1px solid #000000;">
     </canvas>
+    Lon&nbsp;<input type="text" id="txtLon" name="txtLon" />Lat&nbsp;<input type="text" id="txtLat" name="txtLat" />
     </center>
 </body>
 </html>
