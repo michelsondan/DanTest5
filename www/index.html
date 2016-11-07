@@ -33,8 +33,8 @@
 		//alert('start');
 		//alert('co=' + curlo);
 		//alert('la=' + curla);
-		alert(getX(curlo));
-		alert(getY(curla));
+		//alert(getX(curlo));
+		//alert(getY(curla));
 		drawPoint(getX(curlo), getY(curla));
 
 		lastLa = curla;
@@ -103,8 +103,8 @@ function calcdistance() {
 	    "minLat": 31.875411
 	}
 	var dimensions = {
-	    width: 200,
-	    height: 150
+	    width: 300,
+	    height: 450
 	}
 	function getX(x) {
 	    var position = (x - bounds.minLon) / (bounds.maxLon - bounds.minLon);
@@ -131,13 +131,14 @@ function calcdistance() {
 	    lastx = x;
 	    lasty = y;
 	}
+
+	setTimeout(calcdistance, 3000);
 </script>
 </head>
 <body id="body" onload="init();" dir="rtl">
    <center>
-     <canvas id="map" width="200" height="150" style="border:1px solid #000000;">
+     <canvas id="map" width="300" height="450" style="border:1px solid #000000;">
     </canvas>
-	<input type="button" value="מרחק מהקודם!!" onclick='calcdistance();'/>
     </center>
 </body>
 </html>
