@@ -27,8 +27,10 @@
 		var curlo = position.coords.longitude;
 		
 		//alert(calcTheDistance(curla, curlo));
-		alert(calculateDistance(lastLa,lastLo,curla,curlo));
-		alert(bearing(lastLa,lastLo,curla,curlo));
+		//alert(calculateDistance(lastLa,lastLo,curla,curlo));
+	    //alert(bearing(lastLa,lastLo,curla,curlo));
+		drawPoint(getX(curlo), getY(curla));
+
 		lastLa = curla;
 		lastLo = curlo;
 	};
@@ -86,10 +88,39 @@ function bearing(lat1,lng1,lat2,lng2) {
 		navigator.geolocation.getCurrentPosition(onNewPoint, onError);
 		
 	}
+
+	var bounds = {
+	    "minLon": 34.770560,
+	    "maxLon": 34.772834,
+	    "maxLat": 31.889430,
+	    "minLat": 31.888091
+	}
+	var dimensions = {
+	    width: 400,
+	    height: 150
+	}
+	function getX(x) {
+	    var position = (x - bounds.minLon) / (bounds.maxLon - bounds.minLon);
+	    return dimensions.width * position;
+	}
+	function getY(y) {
+	    var position = (y - bounds.minLat) / (bounds.maxLat - bounds.minLat);
+	    return dimensions.height * position;
+	}
+
+	function drawPoint(x, y) {
+	    var c = document.getElementById("map");
+	    var ctx = c.getContext("2d");
+	    ctx.moveTo(x, y);
+	    ctx.lineTo(x + 1, y + 1);
+	    ctx.stroke();
+	}
 </script>
 </head>
 <body id="body" onload="init();" dir="rtl">
    <center>
+     <canvas id="map" width="400" height="150" style="border:1px solid #000000;">
+    </canvas>
 	<input type="button" value="מרחק מהקודם!!" onclick='calcdistance();'/>
     </center>
 </body>
