@@ -131,6 +131,9 @@ function calcdistance() {
 	lastx = 0;
 	lasty = 0;
 	function drawPoint(x, y) {
+	    document.getElementById("txtX").value = x;
+	    document.getElementById("txtY").value = y;
+
 	    if (x <= dimensions.width && x >= 0 && y <= dimensions.he && y >= 0) {
 	        if (lastx != 0 && lasty != 0) {
 	            var c = document.getElementById("map");
@@ -152,9 +155,16 @@ function calcdistance() {
    <center>
      <canvas id="map" width="300" height="450" style="border:1px solid #000000;">
     </canvas>
+    <br />
     Lat&nbsp;<input type="text" id="txtLat" name="txtLat" />
     <br />
     Lon&nbsp;<input type="text" id="txtLon" name="txtLon" />
+    <br />
+    X&nbsp;<input type="text" id="txtX" name="txtX" />
+    <br />
+    Y&nbsp;<input type="text" id="txtY" name="txtY" />
+    <br />
+    V1.2.9
     </center>
 </body>
 </html>
