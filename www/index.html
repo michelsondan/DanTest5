@@ -156,7 +156,7 @@ function calcdistance() {
 
 	    if (x <= dimensions.width && x >= 0 && y <= dimensions.height && y >= 0) {
 	        if (lastx != 0 && lasty != 0) {
-	            var c = document.getElementById("map");
+	            var c = document.getElementById("map1");
 	            var ctx = c.getContext("2d");
 	            ctx.moveTo(lastx, lasty);
 	            ctx.lineTo(x, y);
@@ -204,7 +204,7 @@ function calcdistance() {
 </head>
 <body id="body" onload="init();" dir="rtl">
    <center>
-     <canvas id="map" width="300" height="450" style="border:1px solid #000000;">
+     <canvas id="map1" width="300" height="450" style="border:1px solid #000000;">
     </canvas>
     <br />
     Lat&nbsp;<input type="text" id="txtLat" name="txtLat" />
@@ -221,8 +221,8 @@ function calcdistance() {
     <br />
     <div id="mymap"></div>
     <br />
-    V1.3.8
+    V1.4.0
     </center>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
 </html>
