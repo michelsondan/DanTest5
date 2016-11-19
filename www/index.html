@@ -176,19 +176,23 @@ function calcdistance() {
 	        mapTypeId: google.maps.MapTypeId.ROADMAP
 	    };
 
-	    map = new google.maps.Map
-        (document.getElementById("mymap"), mapOptions);
-
+	    alert('1');
+	    map = new google.maps.Map(document.getElementById("mymap"), mapOptions);
+	    alert('2');
+	    alert(map);
 
 	    var latLong = new google.maps.LatLng(latitude, longitude);
-
+	    alert('3');
 	    var marker = new google.maps.Marker({
 	        position: latLong
 	    });
-
+	    alert('4');
 	    marker.setMap(map);
+	    alert('5');
 	    map.setZoom(15);
+	    alert('6');
 	    map.setCenter(marker.getPosition());
+	    alert('7');
 	}
 
 </script>
