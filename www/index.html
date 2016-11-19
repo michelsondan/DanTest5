@@ -11,8 +11,8 @@
 	function onDeviceReady() {
 	    var options = { enableHighAccuracy: true, timeout: 30000 };
 	    //navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
-	    //navigator.geolocation.watchPosition(onNewPoint, onError, options);
-	    navigator.geolocation.getCurrentPosition(onNewPoint, onError, options);
+	    navigator.geolocation.watchPosition(onNewPoint, onError, options);
+	    //navigator.geolocation.getCurrentPosition(onNewPoint, onError, options);
 	};
 	
 	var onSuccess = function(position) {
@@ -47,7 +47,7 @@
 		lastLa = curla;
 		lastLo = curlo;
 
-		navigator.geolocation.getCurrentPosition(onNewPoint, onError, options);
+		//navigator.geolocation.getCurrentPosition(onNewPoint, onError, options);
 		//setTimeout(calcdistance, 500);
 	};
 
@@ -173,7 +173,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.3.4
+    V1.3.5
     </center>
 </body>
 </html>
