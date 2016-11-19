@@ -41,6 +41,8 @@
 		drawPoint(getX(curlo), getY(curla));
 		document.getElementById("txtLon").value = curlo;
 		document.getElementById("txtLat").value = curla;
+		document.getElementById("txtHeading").value = position.coords.heading;
+		document.getElementById("txtSpeed").value = position.coords.speed;
 		lastLa = curla;
 		lastLo = curlo;
 
@@ -165,7 +167,11 @@ function calcdistance() {
     <br />
     Y&nbsp;<input type="text" id="txtY" name="txtY" />
     <br />
-    V1.3.2
+    Heading&nbsp;<input type="text" id="txtHeading" name="txtHeading" />
+    <br />
+    Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
+    <br />
+    V1.3.3
     </center>
 </body>
 </html>
