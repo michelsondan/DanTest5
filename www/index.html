@@ -183,9 +183,10 @@ function calcdistance() {
 	        marker.setMap(map);
 	        map.setZoom(15);
 	        map.setCenter(marker.getPosition());
-	        if (curheading != null) {
-	            map.setHeading(curheading);
-	        }
+	        map.setHeading(200);
+	        //if (curheading != null) {
+	        //    map.setHeading(curheading);
+	        //}
 	    }
 	}
 
@@ -219,7 +220,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.5.8
+    V1.5.9
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
