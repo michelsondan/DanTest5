@@ -169,6 +169,7 @@ function calcdistance() {
 	}
 
 	function getMap(latitude, longitude) {
+	    return;
 	    alert('0');
 	    alert(latitude + '-' + longitude);
 	    var mapOptions = {
@@ -196,6 +197,9 @@ function calcdistance() {
 	    alert('7');
 	}
 
+	function initMap() {
+	    alert('map!');
+	}
 </script>
 </head>
 <body id="body" onload="init();" dir="rtl">
@@ -219,6 +223,6 @@ function calcdistance() {
     <br />
     V1.3.8
     </center>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>
 </body>
 </html>
