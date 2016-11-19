@@ -185,10 +185,13 @@ function calcdistance() {
             label: 'גיא'
 	    });
 	    marker.setMap(map);
-	    map.setZoom(17);
+	    map.setZoom(15);
 	    map.setCenter(marker.getPosition());        
-	    map.setHeading(curheading);
-	    alert(curheading);
+	    if (curheading != null)
+	    {
+	        alert('heading-' + curheading);
+	        map.setHeading(curheading);
+	    }	    
 	}
 
 	function initMap() {
