@@ -7,7 +7,7 @@
     <script>
 	var lastLa;
 	var lastLo;
-	var heading;
+	var curheading;
 	document.addEventListener('deviceready', onDeviceReady, false);
 	function onDeviceReady() {
 	    var options = { enableHighAccuracy: true, timeout: 30000 };
@@ -30,7 +30,7 @@
 
 	function oncompassSuccess(heading) {
 	    document.getElementById("txtHeading").value = heading.magneticHeading;
-	    heading = eading.magneticHeading;
+	    curheading = heading.magneticHeading;
 	};
 
 	function oncompassError(compassError) {
@@ -188,7 +188,6 @@ function calcdistance() {
 	    map.setZoom(17);
 	    map.setCenter(marker.getPosition());        
 	    map.setHeading(heading);
-	    alert(heading);
 	}
 
 	function initMap() {
@@ -213,7 +212,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.5.4
+    V1.5.5
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
