@@ -12,7 +12,7 @@
 	    var options = { enableHighAccuracy: true, timeout: 30000 };
 	    //navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	    navigator.geolocation.watchPosition(onNewPoint, onError, options);
-	    //navigator.geolocation.getCurrentPosition(onNewPoint, onError, options);
+	    var watchID = navigator.compass.watchHeading(oncompassSuccess, oncompassError, compassoptions);
 	};
 	
 	var onSuccess = function(position) {
@@ -26,6 +26,18 @@
 	var onError = function(error) {
 		alert( 'code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 	};
+
+	function oncompassSuccess(heading) {
+	    document.getElementById("txtHeading").value = heading.magneticHeading;
+	};
+
+	function oncompassError(compassError) {
+	    alert('Compass error: ' + compassError.code);
+	};
+
+	var compassoptions = {
+	    frequency: 3000
+	}; // Update every 3 seconds
 
 	var onNewPoint = function(position) {
 		var curla = position.coords.latitude;
@@ -42,7 +54,7 @@
 		drawPoint(getX(curlo), getY(curla));
 		document.getElementById("txtLon").value = curlo;
 		document.getElementById("txtLat").value = curla;
-		document.getElementById("txtHeading").value = position.coords.heading;
+		//document.getElementById("txtHeading").value = position.coords.heading;
 		document.getElementById("txtSpeed").value = position.coords.speed;
 		lastLa = curla;
 		lastLo = curlo;
@@ -173,7 +185,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.3.5
+    V1.3.6
     </center>
 </body>
 </html>
