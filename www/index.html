@@ -183,10 +183,9 @@ function calcdistance() {
 	        marker.setMap(map);
 	        map.setZoom(15);
 	        map.setCenter(marker.getPosition());
-	        map.setHeading(200);
-	        //if (curheading != null) {
-	        //    map.setHeading(curheading);
-	        //}
+	        if (curheading != null) {
+	            map.setHeading(curheading);
+	        }
 	    }
 	}
 
@@ -194,8 +193,7 @@ function calcdistance() {
 	    var mapOptions = {
 	        center: new google.maps.LatLng(0, 0),
 	        zoom: 1,
-	        mapTypeId: google.maps.MapTypeId.ROADMAP,
-            heading : 200
+	        mapTypeId: google.maps.MapTypeId.SATELLITE,
 	    };
 
 	    map = new google.maps.Map(document.getElementById("mymap"), mapOptions);
@@ -220,7 +218,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.5.9
+    V1.6.0
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
