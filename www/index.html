@@ -193,7 +193,8 @@ function calcdistance() {
 	    var mapOptions = {
 	        center: new google.maps.LatLng(0, 0),
 	        zoom: 1,
-	        mapTypeId: google.maps.MapTypeId.ROADMAP
+	        mapTypeId: google.maps.MapTypeId.ROADMAP,
+            heading : 200
 	    };
 
 	    map = new google.maps.Map(document.getElementById("mymap"), mapOptions);
@@ -218,7 +219,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.5.7
+    V1.5.8
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
