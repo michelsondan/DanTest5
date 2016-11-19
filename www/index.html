@@ -179,10 +179,11 @@ function calcdistance() {
 
 	    var latLong = new google.maps.LatLng(latitude, longitude);
 	    var marker = new google.maps.Marker({
-	        position: latLong
+	        position: latLong,
+            titke: 'Guy'
 	    });
 	    marker.setMap(map);
-	    map.setZoom(15);
+	    map.setZoom(8);
 	    map.setCenter(marker.getPosition());
 	}
 
@@ -208,7 +209,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.4.6
+    V1.4.7
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
