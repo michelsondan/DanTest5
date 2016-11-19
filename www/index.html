@@ -7,7 +7,11 @@
     <script>
 	var lastLa;
 	var lastLo;
+	var targetLa = 31.888794;
+	var targetLo = 34.771624;
+
 	var curheading;
+
 	document.addEventListener('deviceready', onDeviceReady, false);
 	function onDeviceReady() {
 	    var options = { enableHighAccuracy: true, timeout: 30000 };
@@ -53,7 +57,10 @@
 		//alert('la=' + curla);
 		//alert(getX(curlo));
 		//alert(getY(curla));
-		drawPoint(getX(curlo), getY(curla));
+
+		//drawPoint(getX(curlo), getY(curla));
+		drawLineToTarget(getX(curla), getY(curlo), getX(targetLa), getY(targetLo));
+
 		document.getElementById("txtLon").value = curlo;
 		document.getElementById("txtLat").value = curla;
 		//document.getElementById("txtHeading").value = position.coords.heading;
@@ -61,9 +68,7 @@
 		lastLa = curla;
 		lastLo = curlo;
 
-		getMap(curla, curlo);
-		//navigator.geolocation.getCurrentPosition(onNewPoint, onError, options);
-		//setTimeout(calcdistance, 500);
+	    //getMap(curla, curlo);
 	};
 
 	function toRadians(num) {
@@ -170,6 +175,25 @@ function calcdistance() {
 	    }
 	}
 
+	function drawLineToTarget(x, y, xt, yt) {
+	    document.getElementById("txtX").value = x;
+	    document.getElementById("txtY").value = y;
+
+	    if (x <= dimensions.width && x >= 0 && y <= dimensions.height && y >= 0) {
+	        if (lastx != 0 && lasty != 0) {
+	            var c = document.getElementById("map1");
+	            var ctx = c.getContext("2d");
+	            ctx.clearRect(0, 0, dimensions.width, dimensions.height);
+	            ctx.moveTo(x, y);
+	            ctx.lineTo(xt, yt);
+	            ctx.stroke();
+	        }
+
+	        lastx = x;
+	        lasty = y;
+	    }
+	}
+
 	var map;
 
 	function getMap(latitude, longitude) {
@@ -203,9 +227,9 @@ function calcdistance() {
 </head>
 <body id="body" onload="init();" dir="rtl">
    <center>
-     <canvas id="map1" width="300" height="450" style="border:1px solid #000000;display:none;">
+     <canvas id="map1" width="300" height="450" style="border:1px solid #000000;">
     </canvas>
-    <div id="mymap" style="height:450px; border-style:solid;border-width:1px;"></div>
+    <!--<div id="mymap" style="height:450px; border-style:solid;border-width:1px;"></div>-->
     <br />
     Lat&nbsp;<input type="text" id="txtLat" name="txtLat" />
     <br />
@@ -219,7 +243,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.6.3
+    V1.6.4
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
