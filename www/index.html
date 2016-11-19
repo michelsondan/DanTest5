@@ -176,6 +176,8 @@ function calcdistance() {
 	}
 
 	function drawLineToTarget(x, y, xt, yt) {
+	    alert(x + '-' + y + '-' + xt + '-' + yt);
+
 	    document.getElementById("txtX").value = x;
 	    document.getElementById("txtY").value = y;
 
@@ -184,6 +186,7 @@ function calcdistance() {
 	            var c = document.getElementById("map1");
 	            var ctx = c.getContext("2d");
 	            ctx.clearRect(0, 0, dimensions.width, dimensions.height);
+	            alert('line');
 	            ctx.moveTo(x, y);
 	            ctx.lineTo(xt, yt);
 	            ctx.stroke();
@@ -243,7 +246,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.6.4
+    V1.6.5
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
