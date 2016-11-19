@@ -176,7 +176,6 @@ function calcdistance() {
 	    };
 
 	    map = new google.maps.Map(document.getElementById("mymap"), mapOptions);
-	    alert(map);
 
 	    var latLong = new google.maps.LatLng(latitude, longitude);
 	    var marker = new google.maps.Marker({
@@ -208,9 +207,9 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    <div id="mymap"></div>
+    <div id="mymap" style="border-style:solid;border-width:1px;"></div>
     <br />
-    V1.4.3
+    V1.4.4
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
