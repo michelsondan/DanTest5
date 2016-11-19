@@ -173,30 +173,37 @@ function calcdistance() {
 	var map;
 
 	function getMap(latitude, longitude) {
-	    if (map != null)
-	    {
+	    if (map != null) {
+	        var mapOptions = {
+	            center: new google.maps.LatLng(latitude, longitude),
+	            zoom: 15,
+	            mapTypeId: google.maps.MapTypeId.SATELLITE,
+	        };
+
+	        map = new google.maps.Map(document.getElementById("mymap"), mapOptions);
+
 	        var latLong = new google.maps.LatLng(latitude, longitude);
 	        var marker = new google.maps.Marker({
 	            position: latLong,
 	            label: 'גיא'
 	        });
 	        marker.setMap(map);
-	        map.setZoom(15);
-	        map.setCenter(marker.getPosition());
+	        //map.setZoom(15);
+	        //map.setCenter(marker.getPosition());
+	    }
+	    else {
 	        if (curheading != null) {
+	            var latLong = new google.maps.LatLng(latitude, longitude);
+	            var marker = new google.maps.Marker({
+	                position: latLong,
+	            });
+
 	            map.setHeading(curheading);
 	        }
 	    }
 	}
 
 	function initMap() {
-	    var mapOptions = {
-	        center: new google.maps.LatLng(0, 0),
-	        zoom: 1,
-	        mapTypeId: google.maps.MapTypeId.SATELLITE,
-	    };
-
-	    map = new google.maps.Map(document.getElementById("mymap"), mapOptions);
 	}
 </script>
 </head>
@@ -218,7 +225,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.6.0
+    V1.6.1
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
