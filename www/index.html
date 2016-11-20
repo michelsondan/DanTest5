@@ -7,8 +7,10 @@
     <script>
 	var lastLa;
 	var lastLo;
-	var targetLa = 31.888794;
-	var targetLo = 34.771624;
+	//var targetLa = 31.888794;
+	//var targetLo = 34.771624;
+	var targetLa = 31.891436;
+	var targetLo = 34.779197;
 
 	var curheading;
 
@@ -189,7 +191,7 @@ function calcdistance() {
 	            ctx.lineTo(xt, yt);
 	            ctx.stroke();
 
-	            ctx.fillRectxt(xt - 5, yt - 5, xt + 5, yt + 5);
+	            ctx.fillRect(xt - 5, yt - 5, xt + 5, yt + 5);
 	        }
 
 	        lastx = x;
@@ -246,7 +248,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.6.7
+    V1.6.8
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
