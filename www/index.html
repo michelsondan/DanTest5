@@ -153,6 +153,7 @@ function calcdistance() {
 	function getY(y) {
 	    var position = (y - bounds.minLat) / (bounds.maxLat - bounds.minLat);
 	    return dimensions.height * position;
+	    return dimensions.height- dimensions.height * position; //תוספת שלי - כדי שהצפון יהיה למעלה....
 	}
 
 	var lastx;
@@ -248,7 +249,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.6.9
+    V1.7.0
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
