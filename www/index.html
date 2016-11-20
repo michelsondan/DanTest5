@@ -178,6 +178,9 @@ function calcdistance() {
 	    }
 	}
 
+	var lastrotate;
+	var ctx;
+
 	function drawLineToTarget(x, y, xt, yt) {
 
 	    document.getElementById("txtX").value = x;
@@ -185,11 +188,17 @@ function calcdistance() {
 
 	    if (x <= dimensions.width && x >= 0 && y <= dimensions.height && y >= 0) {
 	        if (lastx != 0 && lasty != 0) {
-	            var c = document.getElementById("map1");
-	            var ctx = c.getContext("2d");
-	            if (curheading != null)
+	            if (ctx == null) {
+	                var c = document.getElementById("map1");
+	                ctx = c.getContext("2d");
+	                ctx.save();
+	            }
+	            ctx.restore();
+	            ctx.save();
+	            if (curheading != null) {
 	                ctx.rotate(-curheading * Math.PI / 180);
-	            ctx.clearRect(0, 0, dimensions.width, dimensions.height);
+	            }
+	            //ctx.clearRect(0, 0, dimensions.width, dimensions.height);
 	            ctx.moveTo(x, y);
 	            ctx.lineTo(xt, yt);
 	            ctx.stroke();
@@ -251,7 +260,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.7.2
+    V1.7.3
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
