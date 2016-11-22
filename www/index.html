@@ -193,13 +193,15 @@ function calcdistance() {
 	                ctx = c.getContext("2d");
 	            }
 	            ctx.clearRect(0, 0, dimensions.width, dimensions.height);
+
 	            ctx.beginPath();
-	            ctx.fillRect(x - 5, y - 5, 10, 10);
-	            cxt.strokeStyle = 'black';
+	            ctx.rect(x - 5, y - 5, 10, 10);
+	            ctx.strokeStyle = 'black';
 	            ctx.stroke();
+
 	            ctx.beginPath();
-	            ctx.fillRect(xt - 5, yt - 5, 10, 10);
-	            cxt.strokeStyle = 'red';
+	            ctx.rect(xt - 5, yt - 5, 10, 10);
+	            ctx.strokeStyle = 'red';
 	            ctx.stroke();
 	        }
 
@@ -263,7 +265,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.7.5
+    V1.7.6
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>

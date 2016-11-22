@@ -14,26 +14,41 @@
         //drawAndRotateLine(ctx, 150, 400, 100, 350, 1);
         //drawAndRotateLine(ctx, 150, 400, 200, 350, 1);
 
+
+        ctx.clearRect(0, 0, 300, 450);
+        var x = 100, y = 100, xt = 130, yt = 130;
         ctx.beginPath();
-        ctx.moveTo(150, 400);
-        ctx.lineTo(100, 350);
-        ctx.moveTo(150,400);
-        ctx.lineTo(200,  350);
-        ctx.strokeStyle = 'blue';
+        ctx.rect(x - 5, y - 5, 10, 10);
+        ctx.strokeStyle = 'black';
         ctx.stroke();
-        
-        ctx.save();
-        ctx.translate(150, 225);
-        ctx.rotate(30 * Math.PI / 180);
+
         ctx.beginPath();
-        ctx.rect(-150, -225, 300, 450);
-        ctx.moveTo(-150 + 150, -255 + 400);
-        ctx.lineTo(-150 + 100, -255 + 350);
-        ctx.moveTo(-150 + 150, -255 + 400);
-        ctx.lineTo(-150 + 200, -255 + 350);
+        ctx.rect(xt - 5, yt - 5, 10, 10);
         ctx.strokeStyle = 'red';
         ctx.stroke();
-        ctx.restore();
+        
+        //ctx.beginPath();
+        //ctx.moveTo(150, 400);
+        //ctx.lineTo(100, 350);
+        //ctx.moveTo(150,400);
+        //ctx.lineTo(200,  350);
+        //ctx.strokeStyle = 'blue';
+        //ctx.stroke();
+        
+        //ctx.save();
+        //ctx.translate(150, 225);
+        //ctx.rotate(30 * Math.PI / 180);
+        //ctx.beginPath();
+        //ctx.rect(-150, -225, 300, 450);
+        //ctx.moveTo(-150 + 150, -255 + 400);
+        //ctx.lineTo(-150 + 100, -255 + 350);
+        //ctx.moveTo(-150 + 150, -255 + 400);
+        //ctx.lineTo(-150 + 200, -255 + 350);
+        //ctx.strokeStyle = 'red';
+        //ctx.stroke();
+        //ctx.restore();
+
+
         ////////////ctx.rotate(-10 * Math.PI / 180);
         //////////ctx.beginPath();
         ////////////ctx.rect(300/2-100/2, 450/2 - 100/2, 100, 100);
