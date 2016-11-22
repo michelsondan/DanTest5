@@ -62,7 +62,6 @@
 
 		//drawPoint(getX(curlo), getY(curla));
 		drawLineToTarget(getX(curlo), getY(curla), getX(targetLo), getY(targetLa));
-		txtBearing
 		document.getElementById("txtLon").value = curlo;
 		document.getElementById("txtLat").value = curla;
 		//document.getElementById("txtHeading").value = position.coords.heading;
@@ -117,12 +116,10 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 	}
 
 function bearing(lat1, lng1, lat2, lng2) {
-    alert('1');
             var dLon = toRadians(lng2-lng1);
             var y = Math.sin(dLon) * Math.cos(toRadians(lat2));
             var x = Math.cos(toRadians(lat1))*Math.sin(toRadians(lat2)) - Math.sin(toRadians(lat1))*Math.cos(toRadians(lat2))*Math.cos(dLon);
             var brng = toDeg(Math.atan2(y, x));
-            alert('2');
             return ((brng + 360) % 360);
         }
 
@@ -267,11 +264,11 @@ function calcdistance() {
     <br />
     Heading&nbsp;<input type="text" id="txtHeading" name="txtHeading" />
     <br />
-    Bearing&nbsp;<input type="text" id="Text1" name="txtBearing" />
+    Bearing&nbsp;<input type="text" id="txtBearing" name="txtBearing" />
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.7.7
+    V1.7.8
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
