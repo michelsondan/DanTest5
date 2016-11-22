@@ -62,11 +62,13 @@
 
 		//drawPoint(getX(curlo), getY(curla));
 		drawLineToTarget(getX(curlo), getY(curla), getX(targetLo), getY(targetLa));
-
+		txtBearing
 		document.getElementById("txtLon").value = curlo;
 		document.getElementById("txtLat").value = curla;
 		//document.getElementById("txtHeading").value = position.coords.heading;
 		document.getElementById("txtSpeed").value = position.coords.speed;
+		document.getElementById("txtBearing").value = bearing(curla, curlo, targetLa, targetLo);
+		
 		lastLa = curla;
 		lastLo = curlo;
 
@@ -263,9 +265,11 @@ function calcdistance() {
     <br />
     Heading&nbsp;<input type="text" id="txtHeading" name="txtHeading" />
     <br />
+    Bearing&nbsp;<input type="text" id="Text1" name="txtBearing" />
+    <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.7.6
+    V1.7.7
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
