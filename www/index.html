@@ -35,7 +35,7 @@
 	};
 
 	function oncompassSuccess(heading) {
-	    document.getElementById("txtHeading").value = heading.magneticHeading;
+	    //document.getElementById("txtHeading").value = heading.magneticHeading;
 	    curheading = heading.magneticHeading;
 	};
 
@@ -64,7 +64,7 @@
 		drawLineToTarget(getX(curlo), getY(curla), getX(targetLo), getY(targetLa));
 		document.getElementById("txtLon").value = curlo;
 		document.getElementById("txtLat").value = curla;
-		//document.getElementById("txtHeading").value = position.coords.heading;
+		document.getElementById("txtHeading").value = position.coords.heading;
 		document.getElementById("txtSpeed").value = position.coords.speed;
 		document.getElementById("txtBearing").value = bearing(curla, curlo, targetLa, targetLo);
 		
@@ -268,7 +268,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.7.8
+    V1.7.9
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
