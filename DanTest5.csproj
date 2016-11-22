@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
+    <Content Include="www\canvas.html" />
     <Content Include="www\config.xml">
       <SubType>Designer</SubType>
     </Content>
