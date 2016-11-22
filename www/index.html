@@ -193,15 +193,13 @@ function calcdistance() {
 	                ctx = c.getContext("2d");
 	            }
 	            ctx.clearRect(0, 0, dimensions.width, dimensions.height);
-	            ctx.save();
-	            ctx.translate(dimensions.width / 2, dimensions.height / 2);
-	            if (curheading != null) {
-	                ctx.rotate(-curheading * Math.PI / 180);
-	            }
 	            ctx.beginPath();
-	            ctx.moveTo(dimensions.width / 2 + x, dimensions.height / 2 + y);
-	            ctx.lineTo(dimensions.width / 2 + xt, dimensions.height / 2 + yt);
-	            ctx.fillRect(dimensions.width / 2 + xt - 5, dimensions.height / 2 + yt - 5, 10, 10);
+	            ctx.fillRect(x - 5, y - 5, 10, 10);
+	            cxt.strokeStyle = 'black';
+	            ctx.stroke();
+	            ctx.beginPath();
+	            ctx.fillRect(xt - 5, yt - 5, 10, 10);
+	            cxt.strokeStyle = 'red';
 	            ctx.stroke();
 	        }
 
@@ -209,6 +207,12 @@ function calcdistance() {
 	        lasty = y;
 	    }
 	}
+
+	function drawLineToTargetHeading(x, y, xt, yt, h) {
+
+	}
+
+
 
 	var map;
 
@@ -259,7 +263,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.7.4
+    V1.7.5
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
