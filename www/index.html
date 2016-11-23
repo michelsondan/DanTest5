@@ -218,6 +218,9 @@ function calcdistance() {
 	    var a = y2 - y1;
 	    var b = x2 - x1;
 
+	    document.getElementById("txtA").value = a;
+	    document.getElementById("txtB").value = b;
+
 	    if (b != 0) {
 	        if (a >= 0 && b >= 0) {
 	            return 90 - Math.atan(a / b) * rad2deg;
@@ -324,15 +327,17 @@ function calcdistance() {
      <canvas id="cnvDirection" width="300" height="150" style="border:1px solid #000000;">
     </canvas>
     <!--<div id="mymap" style="height:450px; border-style:solid;border-width:1px;"></div>-->
-    Heading1&nbsp;<input type="text" id="txtHeading1" name="txtHeading1" />
+    a&nbsp;<input type="text" id="txtA" name="txtA" />
     <br />
-    Heading2&nbsp;<input type="text" id="txtHeading2" name="txtHeading2" />
-    <br />
-    Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
+    b&nbsp;<input type="text" id="txtB" name="txtB" />
     <br />
     Bearing&nbsp;<input type="text" id="txtBearing" name="txtBearing" />
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
+    <br />
+    Heading2&nbsp;<input type="text" id="txtHeading2" name="txtHeading2" />
+    <br />
+    Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
     <br />
     V1.8.9
     </center>
