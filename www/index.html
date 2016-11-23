@@ -234,6 +234,9 @@ function calcdistance() {
 	        return 0;
 	}
 
+	var canvas = document.getElementById('cnvDirection');
+	var context = canvas.getContext('2d');
+
 	function drawDirection(azimut, bearing) {
 	    var deg2rad = Math.PI / 180;
 	    var rad2deg = 180 / Math.PI;
@@ -242,16 +245,15 @@ function calcdistance() {
 	    deg = bearing - azimut;
 	    if (deg < 0) deg = 360 + deg;
 
-	    var canvas = document.getElementById('cnvDirection');
-	    var context = canvas.getContext('2d');
+	    context.clearRect(0, 0, 300, 150);
 
 	    context.beginPath();
 	    if (deg <= 180) {
-	        context.arc(150, 225, 100, 1.5 * Math.PI, (270 + deg) / 180 * Math.PI, false);
+	        context.arc(150, 75, 50, 1.5 * Math.PI, (270 + deg) / 180 * Math.PI, false);
 	        context.fillStyle = 'red';
 	    }
 	    else {
-	        context.arc(150, 225, 100, (270 + deg) / 180 * Math.PI, 1.5 * Math.PI, false);
+	        context.arc(150, 75, 50, (270 + deg) / 180 * Math.PI, 1.5 * Math.PI, false);
 	        context.fillStyle = 'blue';
 	    }
 	    context.closePath();
