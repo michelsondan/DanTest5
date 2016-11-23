@@ -245,7 +245,7 @@ function calcdistance() {
 	    deg = bearing - azimut;
 	    if (deg < 0) deg = 360 + deg;
 
-	    context.clearRect(0, 0, 300, 150);
+	    //context.clearRect(0, 0, 300, 150);
 
 	    context.beginPath();
 	    if (deg <= 180) {
@@ -327,7 +327,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.8.3
+    V1.8.4
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
