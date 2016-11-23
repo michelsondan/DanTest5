@@ -13,6 +13,7 @@
 	var targetLo = 34.779197;
 
 	var curheading;
+	var curBearing;
 
 	document.addEventListener('deviceready', onDeviceReady, false);
 	function onDeviceReady() {
@@ -36,7 +37,7 @@
 
 	function oncompassSuccess(heading) {
 	    document.getElementById("txtHeading2").value = heading.magneticHeading;
-	    curheading = heading.magneticHeading;
+	    //curheading = heading.magneticHeading;
 	};
 
 	function oncompassError(compassError) {
@@ -64,8 +65,9 @@
 		drawLineToTarget(getX(curlo), getY(curla), getX(targetLo), getY(targetLa));
 		document.getElementById("txtHeading3").value = position.coords.heading;
 		document.getElementById("txtSpeed").value = position.coords.speed;
-		document.getElementById("txtBearing").value = bearing(curla, curlo, targetLa, targetLo);
-		
+		curBearing=bearing(curla, curlo, targetLa, targetLo);
+		document.getElementById("txtBearing").value = curBearing;
+		drawDirection(curheading, curBearing);
 		lastLa = curla;
 		lastLo = curlo;
 
@@ -199,7 +201,8 @@ function calcdistance() {
 	            ctx.stroke();
 
 	            //calc heading!
-	            document.getElementById("txtHeading3").value = calcHeading(x, y, lastx, lasty);
+	            curheading = calcHeading(x, y, lastx, lasty);
+	            document.getElementById("txtHeading3").value = curheading;
 
 	        }
 
@@ -231,9 +234,46 @@ function calcdistance() {
 	        return 0;
 	}
 
-	function drawLineToTargetHeading(x, y, xt, yt, h) {
+	function drawDirection(azimut, bearing) {
+	    var deg2rad = Math.PI / 180;
+	    var rad2deg = 180 / Math.PI;
+	    var deg;
 
+	    deg = bearing - azimut;
+	    if (deg < 0) deg = 360 + deg;
+
+	    var canvas = document.getElementById('cnvDirection');
+	    var context = canvas.getContext('2d');
+
+	    context.beginPath();
+	    if (deg <= 180) {
+	        context.arc(150, 225, 100, 1.5 * Math.PI, (270 + deg) / 180 * Math.PI, false);
+	        context.fillStyle = 'red';
+	    }
+	    else {
+	        context.arc(150, 225, 100, (270 + deg) / 180 * Math.PI, 1.5 * Math.PI, false);
+	        context.fillStyle = 'blue';
+	    }
+	    context.closePath();
+	    context.lineWidth = 5;
+	    context.strokeStyle = '#550000';
+	    context.fill();
+
+	    context.beginPath();
+	    context.moveTo(150, 225);
+	    context.lineTo(150 + 100 * Math.cos((270 + deg) * deg2rad), 225 + 100 * Math.sin((270 + deg) * deg2rad));
+	    context.lineTo(150 + 100 * Math.cos((270 + 0) * deg2rad), 225 + 100 * Math.sin((270 + 0) * deg2rad));
+	    context.closePath();
+	    context.lineWidth = 1;
+	    if (deg <= 180) {
+	        context.fillStyle = 'red';
+	    }
+	    else {
+	        context.fillStyle = 'blue';
+	    }
+	    context.fill();
 	}
+
 
 
 
@@ -272,6 +312,8 @@ function calcdistance() {
    <center>
      <canvas id="map1" width="300" height="450" style="border:1px solid #000000;">
     </canvas>
+     <canvas id="cnvDirection" width="300" height="150" style="border:1px solid #000000;">
+    </canvas>
     <!--<div id="mymap" style="height:450px; border-style:solid;border-width:1px;"></div>-->
     Heading1&nbsp;<input type="text" id="txtHeading1" name="txtHeading1" />
     <br />
@@ -283,7 +325,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.8.2
+    V1.8.3
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
