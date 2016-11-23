@@ -201,7 +201,7 @@ function calcdistance() {
 	            ctx.stroke();
 
 	            //calc heading!
-	            curheading = calcHeading(lastx, lasty, x, y);
+	            curheading = calcHeading(x, y, lastx, lasty);
 	            document.getElementById("txtHeading1").value = curheading;
 
 	        }
@@ -218,17 +218,21 @@ function calcdistance() {
 	    var a = y2 - y1;
 	    var b = x2 - x1;
 
-	    if (a >= 0 && b >= 0) {
-	        return 90 - Math.atan(a / b) * rad2deg;
-	    }
-	    else if (a >= 0 && b < 0) {
-	        return 270 + Math.atan(a / Math.abs(b)) * rad2deg;
-	    }
-	    else if (a < 0 && b >= 0) {
-	        return 90 + Math.atan(Math.abs(a) / b) * rad2deg;
-	    }
-	    else if (a < 0 && b < 0) {
-	        return 180 + Math.atan(Math.abs(a) / Math.abs(b)) * rad2deg;
+	    if (b != 0) {
+	        if (a >= 0 && b >= 0) {
+	            return 90 - Math.atan(a / b) * rad2deg;
+	        }
+	        else if (a >= 0 && b < 0) {
+	            return 270 + Math.atan(a / Math.abs(b)) * rad2deg;
+	        }
+	        else if (a < 0 && b >= 0) {
+	            return 90 + Math.atan(Math.abs(a) / b) * rad2deg;
+	        }
+	        else if (a < 0 && b < 0) {
+	            return 180 + Math.atan(Math.abs(a) / Math.abs(b)) * rad2deg;
+	        }
+	        else
+	            return 0;
 	    }
 	    else
 	        return 0;
@@ -330,7 +334,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.8.8
+    V1.8.9
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
