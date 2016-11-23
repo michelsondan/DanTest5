@@ -6,6 +6,15 @@
 <body>
     <canvas id="cnv" style="border-style:solid;border-width:1px;" width="300" height="450"></canvas>
     <script>
+        //var deg2rad = Math.PI/180;
+        //var rad2deg = 180/Math.PI;
+        //var ratio   = Math.tan( 30 * deg2rad );
+        //var degrees = Math.atan(ratio) * rad2deg;
+        //alert(ratio);
+        //alert(degrees);
+
+        alert(calcHeading(30, 30, 20, 20));
+
         var cnv = document.getElementById("cnv");
         var ctx = cnv.getContext("2d");
         //drawAndRotateRect(ctx, 100, 100, 100, 100, -30);
@@ -71,6 +80,29 @@
         ////////////ctx.stroke();
 
         ////////////ctx.clearRect(0, 0, 300, 450);
+
+        function calcHeading(x1, y1, x2, y2) {
+            var deg2rad = Math.PI / 180;
+            var rad2deg = 180 / Math.PI;
+
+            var a = y2 - y1;
+            var b = x2 - x1;
+
+            if (a >= 0 && b >= 0) {
+                return 90 - Math.atan(a / b) * rad2deg;
+            }
+            else if (a >= 0 && b < 0) {
+                return 270 + Math.atan(a / Math.abs(b)) * rad2deg;
+            }
+            else if (a < 0 && b >= 0) {
+                return 90 + Math.atan(Math.abs(a) / b) * rad2deg;
+            }
+            else if (a < 0 && b < 0) {
+                return 180 + Math.atan(Math.abs(a) / Math.abs(b)) * rad2deg;
+            }
+            else
+                return 0;
+        }
 
         function drawAndRotateRect(ctx, x, y, width, height, angle) {
             ctx.beginPath();

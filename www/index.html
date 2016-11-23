@@ -35,7 +35,7 @@
 	};
 
 	function oncompassSuccess(heading) {
-	    document.getElementById("txtHeading").value = heading.magneticHeading;
+	    document.getElementById("txtHeading2").value = heading.magneticHeading;
 	    curheading = heading.magneticHeading;
 	};
 
@@ -62,9 +62,7 @@
 
 		//drawPoint(getX(curlo), getY(curla));
 		drawLineToTarget(getX(curlo), getY(curla), getX(targetLo), getY(targetLa));
-		document.getElementById("txtLon").value = curlo;
-		document.getElementById("txtLat").value = curla;
-		//document.getElementById("txtHeading").value = position.coords.heading;
+		document.getElementById("txtHeading3").value = position.coords.heading;
 		document.getElementById("txtSpeed").value = position.coords.speed;
 		document.getElementById("txtBearing").value = bearing(curla, curlo, targetLa, targetLo);
 		
@@ -159,14 +157,13 @@ function calcdistance() {
 
 	var lastx;
 	var lasty;
-	lastx = 0;
-	lasty = 0;
+
 	function drawPoint(x, y) {
 	    document.getElementById("txtX").value = x;
 	    document.getElementById("txtY").value = y;
 
 	    if (x <= dimensions.width && x >= 0 && y <= dimensions.height && y >= 0) {
-	        if (lastx != 0 && lasty != 0) {
+	        if (lastx != null && lasty != null) {
 	            var c = document.getElementById("map1");
 	            var ctx = c.getContext("2d");
 	            ctx.moveTo(lastx, lasty);
@@ -183,12 +180,8 @@ function calcdistance() {
 	var ctx;
 
 	function drawLineToTarget(x, y, xt, yt) {
-
-	    document.getElementById("txtX").value = x;
-	    document.getElementById("txtY").value = y;
-
 	    if (x <= dimensions.width && x >= 0 && y <= dimensions.height && y >= 0) {
-	        if (lastx != 0 && lasty != 0) {
+	        if (lastx != null && lasty != null) {
 	            if (ctx == null) {
 	                var c = document.getElementById("map1");
 	                ctx = c.getContext("2d");
@@ -204,11 +197,38 @@ function calcdistance() {
 	            ctx.rect(xt - 5, yt - 5, 10, 10);
 	            ctx.strokeStyle = 'red';
 	            ctx.stroke();
+
+	            //calc heading!
+	            document.getElementById("txtHeading3").value = calcHeading(x, y, lastx, lasty);
+
 	        }
 
 	        lastx = x;
 	        lasty = y;
 	    }
+	}
+
+	function calcHeading(x1, y1, x2, y2) {
+	    var deg2rad = Math.PI / 180;
+	    var rad2deg = 180 / Math.PI;
+
+	    var a = y2 - y1;
+	    var b = x2 - x1;
+
+	    if (a >= 0 && b >= 0) {
+	        return 90 - Math.atan(a / b) * rad2deg;
+	    }
+	    else if (a >= 0 && b < 0) {
+	        return 270 + Math.atan(a / Math.abs(b)) * rad2deg;
+	    }
+	    else if (a < 0 && b >= 0) {
+	        return 90 + Math.atan(Math.abs(a) / b) * rad2deg;
+	    }
+	    else if (a < 0 && b < 0) {
+	        return 180 + Math.atan(Math.abs(a) / Math.abs(b)) * rad2deg;
+	    }
+	    else
+	        return 0;
 	}
 
 	function drawLineToTargetHeading(x, y, xt, yt, h) {
@@ -253,22 +273,17 @@ function calcdistance() {
      <canvas id="map1" width="300" height="450" style="border:1px solid #000000;">
     </canvas>
     <!--<div id="mymap" style="height:450px; border-style:solid;border-width:1px;"></div>-->
+    Heading1&nbsp;<input type="text" id="txtHeading1" name="txtHeading1" />
     <br />
-    Lat&nbsp;<input type="text" id="txtLat" name="txtLat" />
+    Heading2&nbsp;<input type="text" id="txtHeading2" name="txtHeading2" />
     <br />
-    Lon&nbsp;<input type="text" id="txtLon" name="txtLon" />
-    <br />
-    X&nbsp;<input type="text" id="txtX" name="txtX" />
-    <br />
-    Y&nbsp;<input type="text" id="txtY" name="txtY" />
-    <br />
-    Heading&nbsp;<input type="text" id="txtHeading" name="txtHeading" />
+    Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
     <br />
     Bearing&nbsp;<input type="text" id="txtBearing" name="txtBearing" />
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.8.0
+    V1.8.1
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
