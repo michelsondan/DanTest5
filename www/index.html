@@ -234,9 +234,6 @@ function calcdistance() {
 	        return 0;
 	}
 
-	var canvas = document.getElementById('cnvDirection');
-	var context = canvas.getContext('2d');
-
 	function drawDirection(azimut, bearing) {
 	    var deg2rad = Math.PI / 180;
 	    var rad2deg = 180 / Math.PI;
@@ -245,7 +242,8 @@ function calcdistance() {
 	    deg = bearing - azimut;
 	    if (deg < 0) deg = 360 + deg;
 
-	    //context.clearRect(0, 0, 300, 150);
+	    var canvas = document.getElementById('cnvDirection');
+	    var context = canvas.getContext('2d');
 
 	    context.beginPath();
 	    if (deg <= 180) {
@@ -327,7 +325,7 @@ function calcdistance() {
     <br />
     Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
     <br />
-    V1.8.4
+    V1.8.3
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
