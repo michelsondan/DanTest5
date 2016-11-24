@@ -1,5 +1,4 @@
 C:\Users\Dan\Documents\GitHub\DanTest5\bin\DanTest5.dll
 C:\Users\Dan\Documents\GitHub\DanTest5\bin\DanTest5.pdb
-C:\Users\Dan\Documents\GitHub\DanTest5\obj\Debug\DanTest5.csprojResolveAssemblyReference.cache
 C:\Users\Dan\Documents\GitHub\DanTest5\obj\Debug\DanTest5.dll
 C:\Users\Dan\Documents\GitHub\DanTest5\obj\Debug\DanTest5.pdb
