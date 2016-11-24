@@ -67,6 +67,8 @@
 		document.getElementById("txtSpeed").value = position.coords.speed;
 		curBearing=bearing(curla, curlo, targetLa, targetLo);
 		document.getElementById("txtBearing").value = curBearing;
+		curheading = bearing(lastLa, lastLo, curla, curlo);
+		document.getElementById("txtHeading1").value = curheading;
 		drawDirection(curheading, curBearing);
 		lastLa = curla;
 		lastLo = curlo;
@@ -201,8 +203,8 @@ function calcdistance() {
 	            ctx.stroke();
 
 	            //calc heading!
-	            curheading = calcHeading(x, y, lastx, lasty);
-	            document.getElementById("txtHeading1").value = curheading;
+	            //curheading = calcHeading(x, y, lastx, lasty);
+	            //document.getElementById("txtHeading1").value = curheading;
 
 	        }
 
@@ -341,7 +343,7 @@ function calcdistance() {
     <br />
     Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
     <br />
-    V1.8.9
+    V1.9.0
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
