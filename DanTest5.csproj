@@ -66,9 +66,13 @@
     <Content Include="www\test.html" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="geoService.ashx.cs">
+      <DependentUpon>geoService.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="geoService.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
