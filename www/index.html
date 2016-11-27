@@ -290,8 +290,10 @@ function calcdistance() {
 	function getMap(latitude, longitude) {
 	    if (map != null) {
 	        var latLong = new google.maps.LatLng(latitude, longitude);
-	        var marker = new google.maps.Marker({
+	        var bounds = new google.maps.LatLngBounds();
+	        var marker1 = new google.maps.Marker({
 	            position: latLong,
+	            map: map,
 	            label: 'גיא',
 	            icon: new google.maps.MarkerImage(
                     'http://homelylogs.cloudapp.net:2016/pics/person1.png',
@@ -301,12 +303,11 @@ function calcdistance() {
                     new google.maps.Size(20, 20)
                     )
 	        });
-	        marker.setMap(map);
-	        map.setZoom(15);
-	        map.setCenter(marker.getPosition());
+
+	        bounds.extend(marker1.position);
 
 	        var marker2 = new google.maps.Marker({
-	            position: new google.maps.LatLng(31.896652, 34.781730),
+	            position: new google.maps.LatLng(31.885325, 34.770569),
 	            map: map,
 	            label: 'נועם',
 	            icon: new google.maps.MarkerImage(
@@ -317,6 +318,13 @@ function calcdistance() {
                     new google.maps.Size(20, 20)
                     )
 	        });
+
+	        bounds.extend(marker2.position);
+
+	        map.fitBounds(bounds);
+	        //map.setZoom(15);
+	        //map.setCenter(marker.getPosition());
+
 	    }
 	}
 
