@@ -304,6 +304,19 @@ function calcdistance() {
 	        marker.setMap(map);
 	        map.setZoom(15);
 	        map.setCenter(marker.getPosition());
+
+	        var marker2 = new google.maps.Marker({
+	            position: new google.maps.LatLng(31.896652, 34.781730),
+	            map: map,
+	            label: 'נועם',
+	            icon: new google.maps.MarkerImage(
+                    'http://homelylogs.cloudapp.net:2016/pics/person2.jpg',
+                    null, /* size is determined at runtime */
+                    null, /* origin is 0,0 */
+                    null, /* anchor is bottom center of the scaled image */
+                    new google.maps.Size(20, 20)
+                    )
+	        });
 	    }
 	}
 
@@ -339,7 +352,7 @@ function calcdistance() {
     <br />
     Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
     <br />
-    V1.9.3
+    V1.9.4
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
