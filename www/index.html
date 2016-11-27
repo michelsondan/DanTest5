@@ -288,21 +288,22 @@ function calcdistance() {
 	var map;
 
 	function getMap(latitude, longitude) {
-	    if (map != null)
-	    {
+	    if (map != null) {
 	        var latLong = new google.maps.LatLng(latitude, longitude);
 	        var marker = new google.maps.Marker({
 	            position: latLong,
 	            label: 'גיא',
-	            icon: 'http://homelylogs.cloudapp.net:2016/pics/person1.png'
+	            icon: new google.maps.MarkerImage(
+                    'http://homelylogs.cloudapp.net:2016/pics/person1.png',
+                    null, /* size is determined at runtime */
+                    null, /* origin is 0,0 */
+                    null, /* anchor is bottom center of the scaled image */
+                    new google.maps.Size(42, 68)
+                    )
 	        });
 	        marker.setMap(map);
 	        map.setZoom(15);
 	        map.setCenter(marker.getPosition());
-	        if (curheading != null) {
-	            alert(map.getHeading());
-	            map.setHeading(curheading);
-	        }            
 	    }
 	}
 
@@ -338,7 +339,7 @@ function calcdistance() {
     <br />
     Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
     <br />
-    V1.9.1
+    V1.9.2
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
