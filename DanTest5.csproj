@@ -63,6 +63,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="www\index.html" />
+    <Content Include="pics\person1.png" />
+    <Content Include="pics\person2.jpg" />
+    <Content Include="pics\person3.jpg" />
     <Content Include="www\test.html" />
   </ItemGroup>
   <ItemGroup>

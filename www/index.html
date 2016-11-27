@@ -52,17 +52,11 @@
 		var curla = position.coords.latitude;
 		var curlo = position.coords.longitude;
 		
-		//alert(calcTheDistance(curla, curlo));
-		//alert(calculateDistance(lastLa,lastLo,curla,curlo));
-	    //alert(bearing(lastLa,lastLo,curla,curlo));
-		//alert('start');
-		//alert('co=' + curlo);
-		//alert('la=' + curla);
-		//alert(getX(curlo));
-		//alert(getY(curla));
 
 		//drawPoint(getX(curlo), getY(curla));
-		drawLineToTarget(getX(curlo), getY(curla), getX(targetLo), getY(targetLa));
+
+		//drawLineToTarget(getX(curlo), getY(curla), getX(targetLo), getY(targetLa));
+
 		document.getElementById("txtHeading3").value = position.coords.heading;
 		document.getElementById("txtSpeed").value = position.coords.speed;
 		curBearing=bearing(curla, curlo, targetLa, targetLo);
@@ -73,7 +67,7 @@
 		lastLa = curla;
 		lastLo = curlo;
 
-	    //getMap(curla, curlo);
+	    getMap(curla, curlo);
 	};
 
 	function toRadians(num) {
@@ -299,7 +293,8 @@ function calcdistance() {
 	        var latLong = new google.maps.LatLng(latitude, longitude);
 	        var marker = new google.maps.Marker({
 	            position: latLong,
-	            label: 'גיא'
+	            label: 'גיא',
+	            icon: 'http://homelylogs.cloudapp.net:2016/pics/person1.png'
 	        });
 	        marker.setMap(map);
 	        map.setZoom(15);
@@ -324,11 +319,11 @@ function calcdistance() {
 </head>
 <body id="body" onload="init();" dir="rtl">
    <center>
-     <canvas id="map1" width="300" height="450" style="border:1px solid #000000;">
+     <!--<canvas id="map1" width="300" height="450" style="border:1px solid #000000;">
+    </canvas>-->
+    <div id="mymap" style="height:450px; border-style:solid;border-width:1px;"></div>
+    <canvas id="cnvDirection" width="300" height="150" style="border:1px solid #000000;">
     </canvas>
-     <canvas id="cnvDirection" width="300" height="150" style="border:1px solid #000000;">
-    </canvas>
-    <!--<div id="mymap" style="height:450px; border-style:solid;border-width:1px;"></div>-->
     Heading1&nbsp;<input type="text" id="txtHeading1" name="txtHeading1" />
     <br />
     a&nbsp;<input type="text" id="txtA" name="txtA" />
@@ -343,7 +338,7 @@ function calcdistance() {
     <br />
     Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
     <br />
-    V1.9.0
+    V1.9.1
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
