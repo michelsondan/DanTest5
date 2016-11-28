@@ -286,46 +286,48 @@ function calcdistance() {
 
 
 	var map;
+	var markers = [];
+	var icons = [{ 'url': 'http://homelylogs.cloudapp.net:2016/pics/person1.png' },
+        { 'url': 'http://homelylogs.cloudapp.net:2016/pics/person2.jpg' },
+        { 'url': 'http://homelylogs.cloudapp.net:2016/pics/person3.jpg' }];
 
 	function getMap(latitude, longitude) {
 	    if (map != null) {
 	        var latLong = new google.maps.LatLng(latitude, longitude);
 	        var bounds = new google.maps.LatLngBounds();
-	        var marker1 = new google.maps.Marker({
-	            position: latLong,
-	            map: map,
-	            label: 'גיא',
-	            icon: new google.maps.MarkerImage(
-                    'http://homelylogs.cloudapp.net:2016/pics/person1.png',
-                    null, /* size is determined at runtime */
-                    null, /* origin is 0,0 */
-                    null, /* anchor is bottom center of the scaled image */
-                    new google.maps.Size(20, 20)
-                    )
-	        });
 
-	        bounds.extend(marker1.position);
+	        if (markers.length > 0) {
+	            for (var i = 0; i < markers.length; i++) {
+	                markers[i].setMap(null);
+	            }
+	            markers = [];
+	        }
 
-	        var marker2 = new google.maps.Marker({
-	            position: new google.maps.LatLng(31.885325, 34.770569),
-	            map: map,
-	            label: 'נועם',
-	            icon: new google.maps.MarkerImage(
-                    'http://homelylogs.cloudapp.net:2016/pics/person2.jpg',
-                    null, /* size is determined at runtime */
-                    null, /* origin is 0,0 */
-                    null, /* anchor is bottom center of the scaled image */
-                    new google.maps.Size(20, 20)
-                    )
-	        });
+	        addMarker(latLong, 0);
+	        bounds.extend(latLong);
 
-	        bounds.extend(marker2.position);
+	        latLong = new google.maps.LatLng(31.888215, 34.772621);
+	        addMarker(latLong, 1);
+	        bounds.extend(latLong);
 
 	        map.fitBounds(bounds);
 	        //map.setZoom(15);
 	        //map.setCenter(marker.getPosition());
-
 	    }
+	}
+
+	function addMarker(latLong, i) {
+	    markers.push(new google.maps.Marker({
+	        position: latLong,
+	        map: map,
+	        icon: new google.maps.MarkerImage(
+                icons[i].url,
+                null, /* size is determined at runtime */
+                null, /* origin is 0,0 */
+                null, /* anchor is bottom center of the scaled image */
+                new google.maps.Size(20, 20)
+                )
+	    }));
 	}
 
 	function initMap() {
@@ -360,7 +362,7 @@ function calcdistance() {
     <br />
     Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
     <br />
-    V1.9.4
+    V1.9.6
     </center>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
