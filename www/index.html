@@ -9,8 +9,8 @@
 	var lastLo;
 	//var targetLa = 31.888794;
 	//var targetLo = 34.771624;
-	var targetLa = 31.891436;
-	var targetLo = 34.779197;
+	var targetLa = null;
+	var targetLo = null;
 
 	var curheading;
 	var curBearing;
@@ -56,9 +56,11 @@
 
 		//drawLineToTarget(getX(curlo), getY(curla), getX(targetLo), getY(targetLa));
 
-		curBearing=bearing(curla, curlo, targetLa, targetLo);
-		curheading = bearing(lastLa, lastLo, curla, curlo);
-		drawDirection(curheading, curBearing);
+		if (targetLa != null) {
+		    curBearing = bearing(curla, curlo, targetLa, targetLo);
+		    curheading = bearing(lastLa, lastLo, curla, curlo);
+		    drawDirection(curheading, curBearing);
+		}
 		lastLa = curla;
 		lastLo = curlo;
 
@@ -371,8 +373,12 @@ function calcdistance() {
 	    for (var i = 0; i < data.length; i++) {
 	        if (playerTarget == null || playerTarget != i)
 	            s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" name="radplayer" onclick="playerTarget=' + i + ';" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
-	        else
+	        else {
+	            targetLa = data[i].lat;
+	            targetLo = data[i].lon;
+
 	            s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" checked="checked" name="radplayer" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
+	        }
 	    }
 	    s += '</table>';
 	    document.getElementById('players').innerHTML = s;
@@ -396,7 +402,7 @@ function calcdistance() {
         </table>        
         <canvas id="cnvDirection" width="300" height="130" style="border:1px solid #000000;">
         </canvas>
-        V2.1.1
+        V2.1.2
         </center>
     </div>
     <div id="login">
