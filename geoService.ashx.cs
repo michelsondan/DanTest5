@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,25 +14,29 @@ namespace DanTest5
 
         public void ProcessRequest(HttpContext context)
         {
-            int userCounts;
-            if (context.Application["userCounts"] == null)
-                userCounts = 0;
-            else
-                userCounts = (int)context.Application["userCounts"];
+            List<useInfo> users;
 
-
-            if (context.Application[context.Request["user"]] == null)
+            if (context.Application["users"] == null)
             {
-                userCounts++;
-                context.Application[context.Request["user"]] = "{lat=
-                context.Application[context.Request["user"] + "_lat"] = context.Request["lat"];
-                context.Application[context.Request["user"] + "_lon"] = context.Request["lon"];
+                users = new List<useInfo>();
+            }
+            else
+            {
+                users = (List<useInfo>)context.Application["users"];
             }
 
-            context.Application["userCounts"] = userCounts;
+            var user = from r in users where r.user == context.Request["user"] select r;
+            if (user.Count() == 0)
+                users.Add(new useInfo() { user = context.Request["user"], lat = context.Request["lat"], lon = context.Request["lon"] });
+            else
+            {
+                users[0].lat = context.Request["lat"];
+                users[0].lon = context.Request["lon"];
+            }
 
-            context.Response.ContentType = "text/plain";
-            context.Response.Write("Hello World");
+            context.Application["users"] = users;
+
+            context.Response.Write(JsonConvert.SerializeObject(users));
         }
 
         public bool IsReusable
@@ -41,5 +46,12 @@ namespace DanTest5
                 return false;
             }
         }
+    }
+
+    public class useInfo
+    {
+        public string user { get; set; }
+        public string lat { get; set; }
+        public string lon { get; set; }
     }
 }

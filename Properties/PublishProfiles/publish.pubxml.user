@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\Dan\Documents\GitHub\DanTest5\publish</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/DanTest5.dll">
+      <publishTime>11/29/2016 13:51:40</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>11/29/2016 12:50:18</publishTime>
+    </File>
+    <File Include="geoService.ashx">
+      <publishTime>11/24/2016 16:38:45</publishTime>
+    </File>
+    <File Include="jquery-1.10.1.min.js">
+      <publishTime>11/29/2016 13:19:09</publishTime>
+    </File>
+    <File Include="pics/person1.png">
+      <publishTime>11/27/2016 14:06:26</publishTime>
+    </File>
+    <File Include="pics/person2.jpg">
+      <publishTime>11/27/2016 14:06:26</publishTime>
+    </File>
+    <File Include="pics/person3.jpg">
+      <publishTime>11/27/2016 14:06:26</publishTime>
+    </File>
+    <File Include="testService.html">
+      <publishTime>11/29/2016 13:43:25</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>11/29/2016 13:51:41</publishTime>
+    </File>
+    <File Include="www/canvas.html">
+      <publishTime>11/23/2016 14:56:17</publishTime>
+    </File>
+    <File Include="www/config.xml">
+      <publishTime>11/28/2016 17:43:00</publishTime>
+    </File>
+    <File Include="www/index.html">
+      <publishTime>11/29/2016 13:50:28</publishTime>
+    </File>
+    <File Include="www/test.html">
+      <publishTime>11/17/2016 19:44:23</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
