@@ -368,7 +368,7 @@ function calcdistance() {
 	function showPlayers(data) {
 	    var s = "";
 	    for (var i = 0; i < data.length; i++) {
-	        s += '<input type="checkbox" id="player' + i + '"/><img src="' + icons[i] + '" width=20 height=20 /><br/>';
+	        s += '<input type="checkbox" id="player' + i + '" />' + data[i].user + '&nbsp;<img src="' + icons[i].url + '" width=20 height=20 /><br/>';
 	    }
 	    document.getElementById('players').innerHTML = s;
 	}
@@ -391,7 +391,7 @@ function calcdistance() {
         </table>        
         <canvas id="cnvDirection" width="300" height="130" style="border:1px solid #000000;">
         </canvas>
-        V2.0.5
+        V2.0.6
         </center>
     </div>
     <div id="login">
