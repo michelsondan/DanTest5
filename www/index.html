@@ -361,6 +361,8 @@ function calcdistance() {
 	function doLogin() {
 	    if (document.getElementById('txtUser').value != '') {
 	        username = document.getElementById('txtUser').value;
+	        document.getElementById('game').style.display = 'block';
+	        document.getElementById('login').style.display = 'none';
 	        startGame();
 	    }
 	    else {
@@ -391,7 +393,7 @@ function calcdistance() {
         <br />
         Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
         <br />
-        V1.9.9
+        V2.0.0
         </center>
     </div>
     <div id="login">
@@ -401,7 +403,7 @@ function calcdistance() {
         &nbsp;
         <input type="text" id="txtUser" />
         &nbsp;
-        <input type="button" onclick="doLogin()" />
+        <input type="button" onclick="doLogin()" value="התחל משחק" />
     </div>
     <script src="jquery-1.10.1.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
