@@ -68,20 +68,6 @@
 		lastLo = curlo;
 
 	    getMap(curla, curlo);
-
-	    $.ajax
-        ({
-            type: "POST",
-            url: 'http://homelylogs.cloudapp.net:2016/geoService.ashx',
-            dataType: "json",
-            data: { user: 'dan', lat: 22, lon: 33 } ,
-            success: function (data, status) {
-                alert(data[1].user);
-            },
-            error: function (response) {
-                alert("Error Search!");
-            }
-        });
 	};
 
 	function toRadians(num) {
@@ -307,26 +293,39 @@ function calcdistance() {
 
 	function getMap(latitude, longitude) {
 	    if (map != null) {
-	        var latLong = new google.maps.LatLng(latitude, longitude);
-	        var bounds = new google.maps.LatLngBounds();
 
-	        if (markers.length > 0) {
-	            for (var i = 0; i < markers.length; i++) {
-	                markers[i].setMap(null);
-	            }
-	            markers = [];
-	        }
+	        $.ajax
+                ({
+                    type: "POST",
+                    url: 'http://homelylogs.cloudapp.net:2016/geoService.ashx',
+                    dataType: "json",
+                    data: { user: username, lat: latitude, lon: longitude },
+                    success: function (data, status) {
+                        var bounds = new google.maps.LatLngBounds();
 
-	        addMarker(latLong, 0);
-	        bounds.extend(latLong);
+                        if (markers.length > 0) {
+                            for (var j = 0; j < markers.length; j++) {
+                                markers[j].setMap(null);
+                            }
+                            markers = [];
+                        }
 
-	        latLong = new google.maps.LatLng(31.888215, 34.772621);
-	        addMarker(latLong, 1);
-	        bounds.extend(latLong);
+                        for (var i = 0; i < data.length; i++) {
+                            var latLong = new google.maps.LatLng(data[i].lat, data[i].lon);
 
-	        map.fitBounds(bounds);
-	        //map.setZoom(15);
-	        //map.setCenter(marker.getPosition());
+                            addMarker(latLong, i);
+                            bounds.extend(latLong);
+                        }
+
+                        map.fitBounds(bounds);
+                        //map.setZoom(15);
+                        //map.setCenter(marker.getPosition());
+
+                    },
+                    error: function (response) {
+                        alert("Error Search!");
+                    }
+                });
 	    }
 	}
 
@@ -345,6 +344,9 @@ function calcdistance() {
 	}
 
 	function initMap() {
+	}
+
+	function startGame() {
 	    var mapOptions = {
 	        center: new google.maps.LatLng(0, 0),
 	        zoom: 1,
@@ -353,31 +355,55 @@ function calcdistance() {
 
 	    map = new google.maps.Map(document.getElementById("mymap"), mapOptions);
 	}
+
+	var username = '';
+	function doLogin() {
+	    if (document.getElementById('txtUser').value != '') {
+	        username = document.getElementById('txtUser').value;
+	        document.getElementById('game').style.display = 'block';
+	        document.getElementById('login').style.display = 'none';
+	        startGame();
+	    }
+	    else {
+	        alert('נא לכתוב שם');
+	    }
+	}
 </script>
 </head>
-<body id="body" onload="init();" dir="rtl">
-   <center>
+<body id="body" dir="rtl">
      <!--<canvas id="map1" width="300" height="450" style="border:1px solid #000000;">
     </canvas>-->
-    <div id="mymap" style="height:450px; border-style:solid;border-width:1px;"></div>
-    <canvas id="cnvDirection" width="300" height="150" style="border:1px solid #000000;">
-    </canvas>
-    Heading1&nbsp;<input type="text" id="txtHeading1" name="txtHeading1" />
-    <br />
-    a&nbsp;<input type="text" id="txtA" name="txtA" />
-    <br />
-    b&nbsp;<input type="text" id="txtB" name="txtB" />
-    <br />
-    Bearing&nbsp;<input type="text" id="txtBearing" name="txtBearing" />
-    <br />
-    Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
-    <br />
-    Heading2&nbsp;<input type="text" id="txtHeading2" name="txtHeading2" />
-    <br />
-    Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
-    <br />
-    V1.9.8
-    </center>
+    <div id="game" style="display:none;">
+        <center>
+        <div id="mymap" style="height:450px; border-style:solid;border-width:1px;"></div>
+        <canvas id="cnvDirection" width="300" height="150" style="border:1px solid #000000;">
+        </canvas>
+        Heading1&nbsp;<input type="text" id="txtHeading1" name="txtHeading1" />
+        <br />
+        a&nbsp;<input type="text" id="txtA" name="txtA" />
+        <br />
+        b&nbsp;<input type="text" id="txtB" name="txtB" />
+        <br />
+        Bearing&nbsp;<input type="text" id="txtBearing" name="txtBearing" />
+        <br />
+        Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
+        <br />
+        Heading2&nbsp;<input type="text" id="txtHeading2" name="txtHeading2" />
+        <br />
+        Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
+        <br />
+        V2.0.1
+        </center>
+    </div>
+    <div id="login">
+        <br />
+        <br />
+        שם
+        &nbsp;
+        <input type="text" id="txtUser" />
+        &nbsp;
+        <input type="button" onclick="doLogin()" value="התחל משחק" />
+    </div>
     <script src="jquery-1.10.1.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>

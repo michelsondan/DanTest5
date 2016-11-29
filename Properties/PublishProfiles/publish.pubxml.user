@@ -10,7 +10,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/DanTest5.dll">
-      <publishTime>11/29/2016 16:50:40</publishTime>
+      <publishTime>11/29/2016 17:47:21</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>11/29/2016 12:50:18</publishTime>
@@ -40,10 +40,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/23/2016 14:56:17</publishTime>
     </File>
     <File Include="www/config.xml">
-      <publishTime>11/29/2016 14:01:21</publishTime>
+      <publishTime>11/29/2016 17:40:16</publishTime>
     </File>
     <File Include="www/index.html">
-      <publishTime>11/29/2016 14:01:21</publishTime>
+      <publishTime>11/29/2016 17:40:16</publishTime>
     </File>
     <File Include="www/jquery-1.10.1.min.js">
       <publishTime>11/29/2016 13:54:04</publishTime>

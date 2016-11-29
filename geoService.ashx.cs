@@ -25,7 +25,7 @@ namespace DanTest5
                 users = (List<useInfo>)context.Application["users"];
             }
 
-            if (context.Request["user"] != null)
+            if (context.Request["user"] != null && context.Request["user"] != "0")
             {
                 var user = from r in users where r.user == context.Request["user"] select r;
                 if (user.Count() == 0)
