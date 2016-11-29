@@ -16,7 +16,7 @@ namespace DanTest5
         {
             List<useInfo> users;
 
-            if (context.Application["users"] == null)
+            if (context.Application["users"] == null || context.Request["user"] == "0")
             {
                 users = new List<useInfo>();
             }
@@ -25,17 +25,19 @@ namespace DanTest5
                 users = (List<useInfo>)context.Application["users"];
             }
 
-            var user = from r in users where r.user == context.Request["user"] select r;
-            if (user.Count() == 0)
-                users.Add(new useInfo() { user = context.Request["user"], lat = context.Request["lat"], lon = context.Request["lon"] });
-            else
+            if (context.Request["user"] != null)
             {
-                users[0].lat = context.Request["lat"];
-                users[0].lon = context.Request["lon"];
+                var user = from r in users where r.user == context.Request["user"] select r;
+                if (user.Count() == 0)
+                    users.Add(new useInfo() { user = context.Request["user"], lat = context.Request["lat"], lon = context.Request["lon"] });
+                else
+                {
+                    users[0].lat = context.Request["lat"];
+                    users[0].lon = context.Request["lon"];
+                }
             }
 
             context.Application["users"] = users;
-
             context.Response.Write(JsonConvert.SerializeObject(users));
         }
 

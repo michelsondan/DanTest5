@@ -76,13 +76,12 @@
             dataType: "json",
             data: { user: 'dan', lat: 22, lon: 33 } ,
             success: function (data, status) {
-                alert(data[0].user);
+                alert(data[1].user);
             },
             error: function (response) {
                 alert("Error Search!");
             }
         });
-	    alert('sent!');
 	};
 
 	function toRadians(num) {
@@ -377,8 +376,9 @@ function calcdistance() {
     <br />
     Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
     <br />
-    V1.9.6
+    V1.9.8
     </center>
+    <script src="jquery-1.10.1.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZFLLZE86UwwqvykeRJBrKGoNzlUsbYuk&callback=initMap"></script>    
 </body>
 </html>

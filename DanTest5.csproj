@@ -63,17 +63,6 @@
   <ItemGroup>
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="jquery-1.10.1.min.js" />
-    <Content Include="publish\bin\DanTest5.dll" />
-    <Content Include="publish\bin\Newtonsoft.Json.dll" />
-    <Content Include="publish\jquery-1.10.1.min.js" />
-    <Content Include="publish\pics\person1.png" />
-    <Content Include="publish\pics\person2.jpg" />
-    <Content Include="publish\pics\person3.jpg" />
-    <Content Include="publish\testService.html" />
-    <Content Include="publish\www\canvas.html" />
-    <Content Include="publish\www\config.xml" />
-    <Content Include="publish\www\index.html" />
-    <Content Include="publish\www\test.html" />
     <Content Include="testService.html" />
     <Content Include="Web.config" />
     <Content Include="www\canvas.html" />
@@ -96,8 +85,6 @@
   <ItemGroup>
     <Content Include="geoService.ashx" />
     <None Include="Properties\PublishProfiles\publish.pubxml" />
-    <Content Include="publish\geoService.ashx" />
-    <Content Include="publish\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

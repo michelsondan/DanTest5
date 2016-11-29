@@ -6,11 +6,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\Dan\Documents\GitHub\DanTest5\publish</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Dan\Documents\GitHub\DanTest5Publish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/DanTest5.dll">
-      <publishTime>11/29/2016 13:51:40</publishTime>
+      <publishTime>11/29/2016 16:50:40</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>11/29/2016 12:50:18</publishTime>
@@ -40,10 +40,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/23/2016 14:56:17</publishTime>
     </File>
     <File Include="www/config.xml">
-      <publishTime>11/28/2016 17:43:00</publishTime>
+      <publishTime>11/29/2016 14:01:21</publishTime>
     </File>
     <File Include="www/index.html">
-      <publishTime>11/29/2016 13:50:28</publishTime>
+      <publishTime>11/29/2016 14:01:21</publishTime>
+    </File>
+    <File Include="www/jquery-1.10.1.min.js">
+      <publishTime>11/29/2016 13:54:04</publishTime>
     </File>
     <File Include="www/test.html">
       <publishTime>11/17/2016 19:44:23</publishTime>
