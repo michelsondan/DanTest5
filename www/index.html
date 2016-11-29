@@ -68,20 +68,6 @@
 		lastLo = curlo;
 
 	    getMap(curla, curlo);
-
-	    $.ajax
-        ({
-            type: "POST",
-            url: 'http://homelylogs.cloudapp.net:2016/geoService.ashx',
-            dataType: "json",
-            data: { user: 'dan', lat: 22, lon: 33 } ,
-            success: function (data, status) {
-                alert(data[1].user);
-            },
-            error: function (response) {
-                alert("Error Search!");
-            }
-        });
 	};
 
 	function toRadians(num) {
@@ -307,26 +293,39 @@ function calcdistance() {
 
 	function getMap(latitude, longitude) {
 	    if (map != null) {
-	        var latLong = new google.maps.LatLng(latitude, longitude);
-	        var bounds = new google.maps.LatLngBounds();
 
-	        if (markers.length > 0) {
-	            for (var i = 0; i < markers.length; i++) {
-	                markers[i].setMap(null);
-	            }
-	            markers = [];
-	        }
+	        $.ajax
+                ({
+                    type: "POST",
+                    url: 'http://homelylogs.cloudapp.net:2016/geoService.ashx',
+                    dataType: "json",
+                    data: { user: username, lat: latitude, lon: longitude },
+                    success: function (data, status) {
+                        var bounds = new google.maps.LatLngBounds();
 
-	        addMarker(latLong, 0);
-	        bounds.extend(latLong);
+                        if (markers.length > 0) {
+                            for (var j = 0; j < markers.length; j++) {
+                                markers[j].setMap(null);
+                            }
+                            markers = [];
+                        }
 
-	        latLong = new google.maps.LatLng(31.888215, 34.772621);
-	        addMarker(latLong, 1);
-	        bounds.extend(latLong);
+                        for (var i = 0; i < data.length; i++) {
+                            var latLong = new google.maps.LatLng(data[i].lat, data[i].lon);
 
-	        map.fitBounds(bounds);
-	        //map.setZoom(15);
-	        //map.setCenter(marker.getPosition());
+                            addMarker(latLong, i);
+                            bounds.extend(latLong);
+                        }
+
+                        map.fitBounds(bounds);
+                        //map.setZoom(15);
+                        //map.setCenter(marker.getPosition());
+
+                    },
+                    error: function (response) {
+                        alert("Error Search!");
+                    }
+                });
 	    }
 	}
 
@@ -393,7 +392,7 @@ function calcdistance() {
         <br />
         Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
         <br />
-        V2.0.0
+        V2.0.1
         </center>
     </div>
     <div id="login">
