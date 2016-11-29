@@ -370,9 +370,9 @@ function calcdistance() {
 	    var s = '<table>';
 	    for (var i = 0; i < data.length; i++) {
 	        if (playerTarget == null || playerTarget != i)
-	            s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" id="player' + i + '" onclick="playerTarget=' + i + ';" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
+	            s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" name="radplayer" onclick="playerTarget=' + i + ';" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
 	        else
-	            s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" checked="checked" id="player' + i + '" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
+	            s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" checked="checked" name="radplayer" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
 	    }
 	    s += '</table>';
 	    document.getElementById('players').innerHTML = s;
@@ -396,7 +396,7 @@ function calcdistance() {
         </table>        
         <canvas id="cnvDirection" width="300" height="130" style="border:1px solid #000000;">
         </canvas>
-        V2.1.0
+        V2.1.1
         </center>
     </div>
     <div id="login">
