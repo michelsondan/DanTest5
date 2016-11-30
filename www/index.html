@@ -61,7 +61,78 @@
 		    curheading = bearing(lastLa, lastLo, curla, curlo);
 
 		    document.getElementById('txtTrueBearing').value = Math.floor(curBearing);
-		    document.getElementById('txtBearing').value = Math.floor(curheading - curBearing);
+		    var dir = curBearing - curheading;
+
+		    if (dir >= 0) {
+		        if (dir >= 0 && dir <= 45) {
+		            document.getElementById('txtBearing').value = Math.floor(dir);
+		            document.getElementById('txtHeb').value = '+ישר';
+		        }
+		        else if (dir > 45 && dir <= 90) {
+		            document.getElementById('txtBearing').value = Math.floor(dir);
+		            document.getElementById('txtHeb').value = 'חצי ימינה';
+		        }
+		        else if (dir > 90 && dir <= 135) {
+		            document.getElementById('txtBearing').value = Math.floor(dir);
+		            document.getElementById('txtHeb').value = 'ימינה';
+		        }
+		        else if (dir > 135 && dir <= 180) {
+		            document.getElementById('txtBearing').value = Math.floor(dir);
+		            document.getElementById('txtHeb').value = '+אחורה';
+		        }
+		        else if (dir > 180 && dir <= 225) {
+		            document.getElementById('txtBearing').value = Math.floor(dir - 360);
+		            document.getElementById('txtHeb').value = '-אחורה';
+		        }
+		        else if (dir > 225 && dir <= 270) {
+		            document.getElementById('txtBearing').value = Math.floor(dir - 360);
+		            document.getElementById('txtHeb').value = 'שמאלה';
+		        }
+		        else if (dir > 270 && dir <= 315) {
+		            document.getElementById('txtBearing').value = Math.floor(dir - 360);
+		            document.getElementById('txtHeb').value = 'חצי שמאלה';
+		        }
+		        else if (dir > 315 && dir <= 360) {
+		            document.getElementById('txtBearing').value = Math.floor(dir - 360);
+		            document.getElementById('txtHeb').value = '-ישר';
+		        }
+		    }
+		    else {
+		        dir = Math.abs(dir);
+		        if (dir >= 0 && dir <= 45) {
+		            document.getElementById('txtBearing').value = Math.floor(dir);
+		            document.getElementById('txtHeb').value = '-ישר';
+		        }
+		        else if (dir > 45 && dir <= 90) {
+		            document.getElementById('txtBearing').value = Math.floor(dir);
+		            document.getElementById('txtHeb').value = 'חצי שמאלה';
+		        }
+		        else if (dir > 90 && dir <= 135) {
+		            document.getElementById('txtBearing').value = Math.floor(dir);
+		            document.getElementById('txtHeb').value = 'שמאלה';
+		        }
+		        else if (dir > 135 && dir <= 180) {
+		            document.getElementById('txtBearing').value = Math.floor(dir);
+		            document.getElementById('txtHeb').value = '-אחורה';
+		        }
+		        else if (dir > 180 && dir <= 225) {
+		            document.getElementById('txtBearing').value = Math.floor(dir - 360);
+		            document.getElementById('txtHeb').value = '+אחורה';
+		        }
+		        else if (dir > 225 && dir <= 270) {
+		            document.getElementById('txtBearing').value = Math.floor(dir - 360);
+		            document.getElementById('txtHeb').value = 'ימינה';
+		        }
+		        else if (dir > 270 && dir <= 315) {
+		            document.getElementById('txtBearing').value = Math.floor(dir - 360);
+		            document.getElementById('txtHeb').value = 'חצי ימינה';
+		        }
+		        else if (dir > 315 && dir <= 360) {
+		            document.getElementById('txtBearing').value = Math.floor(dir - 360);
+		            document.getElementById('txtHeb').value = '+ישר';
+		        }
+		    }
+
 		    document.getElementById('txtHeading').value = Math.floor(curheading);
 		    document.getElementById('txtDist').value = Math.floor(calculateDistance(curla, curlo, targetLa, targetLo));
 
@@ -425,7 +496,7 @@ function calcdistance() {
                 </td>
             </tr>
         </table>    
-        V2.1.6
+        V2.1.7
         </center>
     </div>
     <div id="login">

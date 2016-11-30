@@ -27,13 +27,13 @@ namespace DanTest5
 
             if (context.Request["user"] != null && context.Request["user"] != "0")
             {
-                var user = from r in users where r.user == context.Request["user"] select r;
-                if (user.Count() == 0)
+                var user = (from r in users where r.user == context.Request["user"] select r).ToList();
+                if (user.Count == 0)
                     users.Add(new useInfo() { user = context.Request["user"], lat = context.Request["lat"], lon = context.Request["lon"] });
                 else
                 {
-                    users[0].lat = context.Request["lat"];
-                    users[0].lon = context.Request["lon"];
+                    user[0].lat = context.Request["lat"];
+                    user[0].lon = context.Request["lon"];
                 }
             }
 

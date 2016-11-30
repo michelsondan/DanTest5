@@ -9,8 +9,8 @@
 	var lastLo;
 	//var targetLa = 31.888794;
 	//var targetLo = 34.771624;
-	var targetLa = 31.891436;
-	var targetLo = 34.779197;
+	var targetLa = null;
+	var targetLo = null;
 
 	var curheading;
 	var curBearing;
@@ -36,7 +36,6 @@
 	};
 
 	function oncompassSuccess(heading) {
-	    document.getElementById("txtHeading2").value = heading.magneticHeading;
 	    //curheading = heading.magneticHeading;
 	};
 
@@ -57,13 +56,17 @@
 
 		//drawLineToTarget(getX(curlo), getY(curla), getX(targetLo), getY(targetLa));
 
-		document.getElementById("txtHeading3").value = position.coords.heading;
-		document.getElementById("txtSpeed").value = position.coords.speed;
-		curBearing=bearing(curla, curlo, targetLa, targetLo);
-		document.getElementById("txtBearing").value = curBearing;
-		curheading = bearing(lastLa, lastLo, curla, curlo);
-		document.getElementById("txtHeading1").value = curheading;
-		drawDirection(curheading, curBearing);
+		if (targetLa != null) {
+		    curBearing = bearing(curla, curlo, targetLa, targetLo);
+		    curheading = bearing(lastLa, lastLo, curla, curlo);
+
+		    document.getElementById('txtTrueBearing').value = Math.floor(curBearing);
+		    document.getElementById('txtBearing').value = Math.floor(curheading - curBearing);
+		    document.getElementById('txtHeading').value = Math.floor(curheading);
+		    document.getElementById('txtDist').value = Math.floor(calculateDistance(curla, curlo, targetLa, targetLo));
+
+		    drawDirection(curheading, curBearing);
+		}
 		lastLa = curla;
 		lastLo = curlo;
 
@@ -198,7 +201,6 @@ function calcdistance() {
 
 	            //calc heading!
 	            //curheading = calcHeading(x, y, lastx, lasty);
-	            //document.getElementById("txtHeading1").value = curheading;
 
 	        }
 
@@ -213,9 +215,6 @@ function calcdistance() {
 
 	    var a = y2 - y1;
 	    var b = x2 - x1;
-
-	    document.getElementById("txtA").value = a;
-	    document.getElementById("txtB").value = b;
 
 	    if (b != 0) {
 	        if (a >= 0 && b >= 0) {
@@ -240,6 +239,9 @@ function calcdistance() {
 	var context;
 
 	function drawDirection(azimut, bearing) {
+	    var divWidth = 150;
+	    var divHeight = 130;
+	    var radius = 50;
 	    var deg2rad = Math.PI / 180;
 	    var rad2deg = 180 / Math.PI;
 	    var deg;
@@ -251,15 +253,15 @@ function calcdistance() {
 	    if (context == null)
 	        context = canvas.getContext('2d');
 
-	    context.clearRect(0, 0, 300, 150);
+	    context.clearRect(0, 0, divWidth, divHeight);
 
 	    context.beginPath();
 	    if (deg <= 180) {
-	        context.arc(150, 75, 50, 1.5 * Math.PI, (270 + deg) / 180 * Math.PI, false);
+	        context.arc(divWidth / 2, divHeight / 2, radius, 1.5 * Math.PI, (270 + deg) / 180 * Math.PI, false);
 	        context.fillStyle = 'red';
 	    }
 	    else {
-	        context.arc(150, 75, 50, (270 + deg) / 180 * Math.PI, 1.5 * Math.PI, false);
+	        context.arc(divWidth / 2, divHeight / 2, radius, (270 + deg) / 180 * Math.PI, 1.5 * Math.PI, false);
 	        context.fillStyle = 'blue';
 	    }
 	    context.closePath();
@@ -268,9 +270,9 @@ function calcdistance() {
 	    context.fill();
 
 	    context.beginPath();
-	    context.moveTo(150, 75);
-	    context.lineTo(150 + 50 * Math.cos((270 + deg) * deg2rad), 75 + 50 * Math.sin((270 + deg) * deg2rad));
-	    context.lineTo(150 + 50 * Math.cos((270 + 0) * deg2rad), 75 + 50 * Math.sin((270 + 0) * deg2rad));
+	    context.moveTo(divWidth / 2, divHeight / 2);
+	    context.lineTo(divWidth / 2 + radius * Math.cos((270 + deg) * deg2rad), divHeight / 2 + radius * Math.sin((270 + deg) * deg2rad));
+	    context.lineTo(divWidth / 2 + radius * Math.cos((270 + 0) * deg2rad), divHeight / 2 + radius * Math.sin((270 + 0) * deg2rad));
 	    context.closePath();
 	    context.lineWidth = 1;
 	    if (deg <= 180) {
@@ -309,6 +311,8 @@ function calcdistance() {
                             }
                             markers = [];
                         }
+
+                        showPlayers(data);
 
                         for (var i = 0; i < data.length; i++) {
                             var latLong = new google.maps.LatLng(data[i].lat, data[i].lon);
@@ -368,6 +372,27 @@ function calcdistance() {
 	        alert('נא לכתוב שם');
 	    }
 	}
+
+	var playerTarget = null;
+	function showPlayers(data) {
+	    var s = '<table>';
+	    for (var i = 0; i < data.length; i++) {
+	        if (data[i].user != username) {
+	            if (playerTarget == null || playerTarget != data[i].user)
+	                s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" name="radplayer" onclick="playerTarget=\'' + data[i].user + '\';" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
+	            else {
+	                targetLa = data[i].lat;
+	                targetLo = data[i].lon;
+
+	                s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" checked="checked" name="radplayer" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
+	            }
+	        }
+	        else
+	            s += '<tr><td style="background-color:yellow;"><center><img src="' + icons[i].url + '" width=20 height=20 /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
+	    }
+	    s += '</table>';
+	    document.getElementById('players').innerHTML = s;
+	}
 </script>
 </head>
 <body id="body" dir="rtl">
@@ -375,24 +400,32 @@ function calcdistance() {
     </canvas>-->
     <div id="game" style="display:none;">
         <center>
-        <div id="mymap" style="height:450px; border-style:solid;border-width:1px;"></div>
-        <canvas id="cnvDirection" width="300" height="150" style="border:1px solid #000000;">
-        </canvas>
-        Heading1&nbsp;<input type="text" id="txtHeading1" name="txtHeading1" />
-        <br />
-        a&nbsp;<input type="text" id="txtA" name="txtA" />
-        <br />
-        b&nbsp;<input type="text" id="txtB" name="txtB" />
-        <br />
-        Bearing&nbsp;<input type="text" id="txtBearing" name="txtBearing" />
-        <br />
-        Speed&nbsp;<input type="text" id="txtSpeed" name="txtSpeed" />
-        <br />
-        Heading2&nbsp;<input type="text" id="txtHeading2" name="txtHeading2" />
-        <br />
-        Heading3&nbsp;<input type="text" id="txtHeading3" name="txtHeading3" />
-        <br />
-        V2.0.1
+        <table style="width:100%;">
+            <tr>
+                <td style="width:80%;">
+                    <div id="mymap" style="height:450px; border-style:solid;border-width:1px;"></div>
+                </td>
+                <td style="width:20%;">
+                    <div id="players" style="height:450px; border-style:solid;border-width:1px;border-color:red;"></div>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <canvas id="cnvDirection" width="150" height="130" style="border:1px solid #000000;">
+                    </canvas>
+                </td>
+                <td>
+                    מרחק&nbsp;<input type="text" id="txtDist" size="5" /><br />
+                    סיבוב&nbsp;<input type="text" id="txtBearing" size="5" /><br />
+                    במילים&nbsp;<input type="text" id="txtHeb" size="5" /><br />
+                    אזימוט&nbsp;<input type="text" id="txtTrueBearing" size="5" /><br />
+                    מבט&nbsp;<input type="text" id="txtHeading" size="5" />
+                </td>
+            </tr>
+        </table>    
+        V2.1.6
         </center>
     </div>
     <div id="login">
