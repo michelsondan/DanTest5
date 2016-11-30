@@ -377,14 +377,18 @@ function calcdistance() {
 	function showPlayers(data) {
 	    var s = '<table>';
 	    for (var i = 0; i < data.length; i++) {
-	        if (playerTarget == null || playerTarget != i)
-	            s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" name="radplayer" onclick="playerTarget=' + i + ';" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
-	        else {
-	            targetLa = data[i].lat;
-	            targetLo = data[i].lon;
+	        if (data[i].user != username) {
+	            if (playerTarget == null || playerTarget != i)
+	                s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" name="radplayer" onclick="playerTarget=' + i + ';" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
+	            else {
+	                targetLa = data[i].lat;
+	                targetLo = data[i].lon;
 
-	            s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" checked="checked" name="radplayer" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
+	                s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" checked="checked" name="radplayer" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
+	            }
 	        }
+	        else
+	            s += '<tr><td style="background-color:yellow;"><center><img src="' + icons[i].url + '" width=20 height=20 /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
 	    }
 	    s += '</table>';
 	    document.getElementById('players').innerHTML = s;
@@ -421,7 +425,7 @@ function calcdistance() {
                 </td>
             </tr>
         </table>    
-        V2.1.4
+        V2.1.5
         </center>
     </div>
     <div id="login">
