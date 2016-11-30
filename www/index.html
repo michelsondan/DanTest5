@@ -354,7 +354,7 @@ function calcdistance() {
 	    var mapOptions = {
 	        center: new google.maps.LatLng(0, 0),
 	        zoom: 1,
-	        mapTypeId: google.maps.MapTypeId.SATELLITE
+	        mapTypeId: google.maps.MapTypeId.ROADMAP
 	    };
 
 	    map = new google.maps.Map(document.getElementById("mymap"), mapOptions);
@@ -378,8 +378,8 @@ function calcdistance() {
 	    var s = '<table>';
 	    for (var i = 0; i < data.length; i++) {
 	        if (data[i].user != username) {
-	            if (playerTarget == null || playerTarget != i)
-	                s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" name="radplayer" onclick="playerTarget=' + i + ';" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
+	            if (playerTarget == null || playerTarget != data[i].user)
+	                s += '<tr><td><center><img src="' + icons[i].url + '" width=20 height=20 />&nbsp;<input type="radio" name="radplayer" onclick="playerTarget=\'' + data[i].user + '\';" /></center></td></tr><tr><td>' + data[i].user + '</td></tr><tr><td><hr/></td></tr>';
 	            else {
 	                targetLa = data[i].lat;
 	                targetLo = data[i].lon;
@@ -425,7 +425,7 @@ function calcdistance() {
                 </td>
             </tr>
         </table>    
-        V2.1.5
+        V2.1.6
         </center>
     </div>
     <div id="login">
