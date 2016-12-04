@@ -21,6 +21,8 @@
 	    //navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	    navigator.geolocation.watchPosition(onNewPoint, onError, options);
 	    //var watchID = navigator.compass.watchHeading(oncompassSuccess, oncompassError, compassoptions);
+
+	    window.plugins.insomnia.keepAwake();
 	};
 	
 	var onSuccess = function(position) {
@@ -496,7 +498,7 @@ function calcdistance() {
                 </td>
             </tr>
         </table>    
-        V2.1.8
+        V2.1.9
         </center>
     </div>
     <div id="login">
