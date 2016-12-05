@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <script src="jquery-1.10.1.min.js"></script>
+</head>
+<body>
+    <div id="msg" style="background-color:yellow;position:absolute;left:100px;top:100px;width:50px;height:50px;">0</div>
+    <div id="main"></div>
+
+    <script>
+        for (var i = 1; i <= 188; i++) {
+            document.getElementById("main").innerHTML += ('<div id="item' + i + '">' + i + '</div>');
+        }
+        $(window).scroll(function () {
+            document.getElementById("msg").style.top = $(window).scrollTop() + 'px';
+            document.getElementById("msg").innerText = $(window).scrollTop();            
+            if ($(window).scrollTop() + $(window).height() >= $("#item180").offset().top) {
+                //alert('1');
+            }
+            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                 //ajax call get data from server and append to the div
+            }
+        });
+    </script>
+
+</body>
+</html>

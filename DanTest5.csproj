@@ -63,6 +63,7 @@
   <ItemGroup>
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="jquery-1.10.1.min.js" />
+    <Content Include="testPagingScroll.html" />
     <Content Include="testService.html" />
     <Content Include="Web.config" />
     <Content Include="www\canvas.html" />
