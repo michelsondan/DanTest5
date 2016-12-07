@@ -23,7 +23,6 @@
 	    //var watchID = navigator.compass.watchHeading(oncompassSuccess, oncompassError, compassoptions);
 
 	    window.plugins.insomnia.keepAwake();
-	    alert(navigator);
 	};
 	
 	var onSuccess = function(position) {
@@ -50,7 +49,7 @@
 	    frequency: 1000
 	}; // Update every 3 seconds
 
-	var onNewPoint = function(position) {alert('1');
+	var onNewPoint = function(position) {
 		var curla = position.coords.latitude;
 		var curlo = position.coords.longitude;
 		
@@ -499,7 +498,7 @@ function calcdistance() {
                 </td>
             </tr>
         </table>    
-        V2.2.1
+        V2.2.2
         </center>
     </div>
     <div id="login">
