@@ -17,7 +17,7 @@
 
 	document.addEventListener('deviceready', onDeviceReady, false);
 	function onDeviceReady() {
-	    var options = { enableHighAccuracy: true, timeout: 30000 };
+	    var options = {maximumAge: 0, enableHighAccuracy: true, timeout: 30000 };
 	    //navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	    navigator.geolocation.watchPosition(onNewPoint, onError, options);
 	    //var watchID = navigator.compass.watchHeading(oncompassSuccess, oncompassError, compassoptions);
@@ -499,7 +499,7 @@ function calcdistance() {
                 </td>
             </tr>
         </table>    
-        V2.2.0
+        V2.2.1
         </center>
     </div>
     <div id="login">
